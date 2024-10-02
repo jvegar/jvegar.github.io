@@ -1,0 +1,100 @@
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* To ensure the pseudo-elements don't create scrollbars */
+}
+
+.hero--fullheight {
+  min-height: 100vh;
+}
+
+/* Left half background */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background-color: rgba(240, 240, 255, 0.8);
+  z-index: 0;
+}
+
+/* Right half background */
+.hero::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 1);
+  z-index: 0;
+}
+
+.hero__container {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.hero__content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero__text {
+  color: #000;
+}
+
+.hero__subheading {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #3e64ff; /* Royal Blue */
+  margin-bottom: 0.5rem;
+  display: block;
+  text-transform: uppercase;
+}
+
+.hero__title {
+  font-size: 4rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.hero__subtitle {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.hero__rotating-text {
+  color: #3e64ff; /* Royal Blue */
+  font-weight: bold;
+}
+
+/* Add a blinking cursor effect */
+.hero__rotating-text::after {
+  content: "|";
+  animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Remove the mouse icon for now, as it's not in the image */
+.hero__mouse {
+  display: none;
+}
