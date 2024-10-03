@@ -1,12 +1,13 @@
 import { motion } from "framer-motion";
 import styles from "./Projects.module.css";
-
+import ecommercePreview from "../../assets/ecommerce-preview.jpg";
+import weatherAppPreview from "../../assets/weather-app-preview.jpg";
 interface Project {
   id: number;
   title: string;
   description: string;
   technologies: string[];
-  imageUrl: string;
+  image: string;
   githubUrl: string;
   liveUrl?: string;
 }
@@ -17,7 +18,7 @@ const mockProjects: Project[] = [
     title: "E-commerce Platform",
     description: "A full-stack e-commerce solution with React and Node.js",
     technologies: ["React", "Node.js", "MongoDB", "Express"],
-    imageUrl: "https://example.com/ecommerce-preview.jpg",
+    image: ecommercePreview,
     githubUrl: "https://github.com/yourusername/ecommerce-project",
     liveUrl: "https://your-ecommerce-site.com",
   },
@@ -26,7 +27,7 @@ const mockProjects: Project[] = [
     title: "Weather App",
     description: "Real-time weather forecasting app using OpenWeatherMap API",
     technologies: ["React Native", "Redux", "API Integration"],
-    imageUrl: "https://example.com/weather-app-preview.jpg",
+    image: weatherAppPreview,
     githubUrl: "https://github.com/yourusername/weather-app",
   },
   // Add more mock projects as needed
@@ -36,7 +37,7 @@ function ProjectCard({ project }: { project: Project }) {
   return (
     <motion.div whileHover={{ scale: 1.05 }} className={styles.projectCard}>
       <img
-        src={project.imageUrl}
+        src={project.image}
         alt={project.title}
         className={styles.projectImage}
       />

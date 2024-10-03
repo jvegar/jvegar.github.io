@@ -1,19 +1,62 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useScrollPosition } from "./useScrollPosition";
 import styles from "./Header.module.css";
 import NavItems from "./NavItems";
 
+// New custom hook for scroll spy
+const useScrollSpy = (sectionIds: string[], offset: number = 100) => {
+  const [activeSection, setActiveSection] = useState("");
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+
+      const currentSection = sectionIds.find((sectionId) => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          const { offsetTop, offsetHeight } = element;
+          return (
+            scrollPosition >= offsetTop - offset &&
+            scrollPosition < offsetTop + offsetHeight - offset
+          );
+        }
+        return false;
+      });
+
+      if (currentSection) {
+        setActiveSection(currentSection);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Call once to set initial active section
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [sectionIds, offset]);
+
+  return activeSection;
+};
+
 function Header() {
   const [isNavVisible, setIsNavVisible] = useState(false);
-  const [activeLink, setActiveLink] = useState("#home-section");
   const isScrolled = useScrollPosition();
+
+  // Add your section IDs here
+  const sectionIds = [
+    "home-section",
+    "about-section",
+    "resume-section",
+    "services-section",
+    "projects-section",
+    "contact-section",
+  ];
+  const activeSection = useScrollSpy(sectionIds);
 
   const toggleNav = () => {
     setIsNavVisible(!isNavVisible);
   };
 
-  const handleLinkClick = (href: string) => {
-    setActiveLink(href);
+  const handleLinkClick = () => {
     setIsNavVisible(false);
   };
 
@@ -40,7 +83,10 @@ function Header() {
           className={`${styles.headerNav} ${isNavVisible ? styles.show : ""}`}
           id="header-nav"
         >
-          <NavItems activeLink={activeLink} onLinkClick={handleLinkClick} />
+          <NavItems
+            activeLink={`#${activeSection}`}
+            onLinkClick={handleLinkClick}
+          />
         </div>
       </div>
     </nav>

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Resume.module.css";
+import educationIcon from "../../assets/icon-education.svg";
+import experienceIcon from "../../assets/icon-experience.svg";
 
 function Resume() {
   const [activeSection, setActiveSection] = useState("Education");
@@ -126,7 +128,14 @@ function Resume() {
                 <div className={styles.resumeItemIcon}>
                   <span
                     className={`${styles.resumeIcon} ${styles.resumeIconIdeas}`}
-                  ></span>
+                  >
+                    <img
+                      src={educationIcon}
+                      alt="Education"
+                      width={40}
+                      height={40}
+                    />
+                  </span>
                 </div>
                 <div className={styles.resumeItemContent}>
                   <span className={styles.resumeItemDate}>{item.date}</span>
@@ -155,7 +164,14 @@ function Resume() {
                 <div className={styles.resumeItemIcon}>
                   <span
                     className={`${styles.resumeIcon} ${styles.resumeIconBriefcase}`}
-                  ></span>
+                  >
+                    <img
+                      src={experienceIcon}
+                      alt="Experience"
+                      width={32}
+                      height={32}
+                    />
+                  </span>
                 </div>
                 <div className={styles.resumeItemContent}>
                   <span className={styles.resumeItemDate}>{item.date}</span>

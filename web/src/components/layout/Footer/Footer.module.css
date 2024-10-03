@@ -58,6 +58,7 @@
 .socialIcons {
   display: flex;
   margin-top: 20px;
+  gap: 0.5rem;
 }
 
 .icon {
@@ -69,39 +70,14 @@
   display: inline-block;
 }
 
-.iconTwitter {
-  background-image: url("path/to/twitter-icon.png");
-}
-
-.iconFacebook {
-  background-image: url("path/to/facebook-icon.png");
-}
-
-.iconInstagram {
-  background-image: url("path/to/instagram-icon.png");
-}
-
 .iconLocation,
 .iconPhone,
 .iconEmail {
   display: inline-block;
   width: 16px;
-  height: 16px;
   margin-right: 10px;
   background-size: contain;
   background-repeat: no-repeat;
-}
-
-.iconLocation {
-  background-image: url("path/to/location-icon.png");
-}
-
-.iconPhone {
-  background-image: url("path/to/phone-icon.png");
-}
-
-.iconEmail {
-  background-image: url("path/to/email-icon.png");
 }
 
 .footerBottom {
@@ -113,6 +89,12 @@
 
 .footerBottom p {
   font-size: 12px;
+}
+
+.footerItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 @media screen and (max-width: 768px) {

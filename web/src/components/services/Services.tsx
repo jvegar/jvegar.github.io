@@ -1,13 +1,19 @@
 import ServiceCard from "./ServiceCard";
 import styles from "./Services.module.css";
+import webDesignIcon from "../../assets/icon-web-design.svg";
+import webDevelopmentIcon from "../../assets/icon-web-development.svg";
+import financialAdvisoryIcon from "../../assets/icon-financial-advisory.svg";
+import appDevelopmentIcon from "../../assets/icon-app-development.svg";
+import brandingIcon from "../../assets/icon-branding.svg";
+import processAutomationIcon from "../../assets/icon-process-automation.svg";
 
 const services = [
-  { icon: "🔍", title: "WEB DESIGN" },
-  { icon: "🧪", title: "WEB DEVELOPMENT" },
-  { icon: "💡", title: "FINANCIAL ADVISORY" },
-  { icon: "🌐", title: "APP DEVELOPING" },
-  { icon: "🎨", title: "BRANDING" },
-  { icon: "⚙️", title: "PROCESSES AUTOMATION" },
+  { icon: webDesignIcon, title: "WEB DESIGN" },
+  { icon: webDevelopmentIcon, title: "WEB DEVELOPMENT" },
+  { icon: financialAdvisoryIcon, title: "FINANCIAL ADVISORY" },
+  { icon: appDevelopmentIcon, title: "APP DEVELOPMENT" },
+  { icon: brandingIcon, title: "BRANDING" },
+  { icon: processAutomationIcon, title: "PROCESS AUTOMATION" },
 ];
 
 function Services() {
