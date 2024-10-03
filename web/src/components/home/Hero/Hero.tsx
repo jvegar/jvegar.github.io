@@ -12,9 +12,9 @@ function useTextRotation(
   const [isDeleting, setIsDeleting] = useState(false);
 
   const tick = useCallback(() => {
-    let i = loopNum % toRotate.length;
-    let fullText = toRotate[i];
-    let updatedText = isDeleting
+    const i = loopNum % toRotate.length;
+    const fullText = toRotate[i];
+    const updatedText = isDeleting
       ? fullText.substring(0, text.length - 1)
       : fullText.substring(0, text.length + 1);
 
@@ -29,7 +29,7 @@ function useTextRotation(
   }, [toRotate, pausePeriod, text, isDeleting, loopNum]);
 
   useEffect(() => {
-    let ticker = setInterval(tick, isDeleting ? deletingSpeed : typingSpeed);
+    const ticker = setInterval(tick, isDeleting ? deletingSpeed : typingSpeed);
     return () => clearInterval(ticker);
   }, [tick, isDeleting, typingSpeed, deletingSpeed]);
 

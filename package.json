@@ -1,0 +1,18 @@
+{
+  "name": "jvegar.github.io",
+  "version": "1.0.0",
+  "main": "index.js",
+  "workspaces": [
+    "web"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "web": "npm run dev --workspace=web",
+    "build:web": "npm run build --workspace=web",
+    "publish:web": "cp -r web/dist/* ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

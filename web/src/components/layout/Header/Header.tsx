@@ -57,8 +57,8 @@ function Header() {
               { href: "#resume-section", text: "Resume" },
               { href: "#services-section", text: "Services" },
               { href: "#projects-section", text: "Projects" },
-              { href: "#blog-section", text: "My Blog" },
               { href: "#contact-section", text: "Contact" },
+              { href: "#my-platform-section", text: "My Platform" },
             ].map(({ href, text }) => (
               <li key={href} className="header__nav-item">
                 <a

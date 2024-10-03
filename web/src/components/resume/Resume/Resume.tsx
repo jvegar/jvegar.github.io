@@ -1,13 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Resume.css";
 
 function Resume() {
-  const [selectedItem, setSelectedItem] = useState("Education");
+  const [activeSection, setActiveSection] = useState("Education");
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ["Education", "Experience", "Skills"];
+      const scrollPosition = window.scrollY;
+
+      for (const section of sections) {
+        const element = document.getElementById(
+          `page-${section.toLowerCase()}`
+        );
+        if (element) {
+          const { offsetTop, offsetHeight } = element;
+          if (
+            scrollPosition >= offsetTop &&
+            scrollPosition < offsetTop + offsetHeight
+          ) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const handleItemClick = (item: string) => {
-    setSelectedItem(item);
+    setActiveSection(item);
 
-    // Add smooth scrolling effect
     const targetElement = document.getElementById(`page-${item.toLowerCase()}`);
     if (targetElement) {
       targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -70,6 +95,21 @@ function Resume() {
     },
   ];
 
+  const skillsData = [
+    { name: "Node", percentage: 90, lastWeek: 28, lastMonth: 60 },
+    { name: "TypeScript", percentage: 80, lastWeek: 28, lastMonth: 60 },
+    { name: "Postgres", percentage: 75, lastWeek: 28, lastMonth: 60 },
+  ];
+
+  const additionalSkills = [
+    { name: "React", percentage: 90 },
+    { name: "Docker", percentage: 85 },
+    { name: "GraphQL", percentage: 95 },
+    { name: "CSS", percentage: 90 },
+    { name: "Python", percentage: 70 },
+    { name: "Java", percentage: 80 },
+  ];
+
   const renderContent = () => {
     return (
       <>
@@ -125,14 +165,63 @@ function Resume() {
         </div>
         <div id="page-skills" className="resume__page resume__page--skills">
           <h2 className="resume__heading">Skills</h2>
-          {/* Skills content */}
-        </div>
-        <div
-          id="page-acknowledgements"
-          className="resume__page resume__page--acknowledgements"
-        >
-          <h2 className="resume__heading">Acknowledgements</h2>
-          {/* Acknowledgements content */}
+          <div className="resume__skills-grid">
+            {skillsData.map((skill, index) => (
+              <div key={index} className="resume__skill-card">
+                <h3>{skill.name}</h3>
+                <div className="resume__skill-circle">
+                  <svg viewBox="0 0 36 36" className="resume__skill-circle-svg">
+                    <path
+                      className="resume__skill-circle-bg"
+                      d="M18 2.0845
+                        a 15.9155 15.9155 0 0 1 0 31.831
+                        a 15.9155 15.9155 0 0 1 0 -31.831"
+                    />
+                    <path
+                      className="resume__skill-circle-progress"
+                      strokeDasharray={`${skill.percentage}, 100`}
+                      d="M18 2.0845
+                        a 15.9155 15.9155 0 0 1 0 31.831
+                        a 15.9155 15.9155 0 0 1 0 -31.831"
+                    />
+                    <text x="18" y="20.35" className="resume__skill-percentage">
+                      {skill.percentage}%
+                    </text>
+                  </svg>
+                </div>
+                <div className="resume__skill-stats">
+                  <div className="resume__skill-stat">
+                    <span className="resume__skill-stat-value">
+                      {skill.lastWeek}%
+                    </span>
+                    <span className="resume__skill-stat-label">Last week</span>
+                  </div>
+                  <div className="resume__skill-stat">
+                    <span className="resume__skill-stat-value">
+                      {skill.lastMonth}%
+                    </span>
+                    <span className="resume__skill-stat-label">Last month</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="resume__additional-skills">
+            {additionalSkills.map((skill, index) => (
+              <div key={index} className="resume__skill-bar">
+                <div className="resume__skill-bar-info">
+                  <span>{skill.name}</span>
+                  <span>{skill.percentage}%</span>
+                </div>
+                <div className="resume__skill-bar-bg">
+                  <div
+                    className="resume__skill-bar-progress"
+                    style={{ width: `${skill.percentage}%` }}
+                  ></div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </>
     );
@@ -145,23 +234,19 @@ function Resume() {
           <div className="resume__nav-column">
             <nav className="resume__nav" id="navi">
               <ul className="resume__nav-list">
-                {["Education", "Experience", "Skills", "Acknowledgements"].map(
-                  (item) => (
-                    <li key={item} className="resume__nav-item">
-                      <a
-                        href={`#${item.toLowerCase()}`}
-                        className={`resume__nav-link ${
-                          selectedItem === item
-                            ? "resume__nav-link--active"
-                            : ""
-                        }`}
-                        onClick={() => handleItemClick(item)}
-                      >
-                        <span className="resume__nav-text">{item}</span>
-                      </a>
-                    </li>
-                  )
-                )}
+                {["Education", "Experience", "Skills"].map((item) => (
+                  <li key={item} className="resume__nav-item">
+                    <a
+                      href={`#${item.toLowerCase()}`}
+                      className={`resume__nav-link ${
+                        activeSection === item ? "resume__nav-link--active" : ""
+                      }`}
+                      onClick={() => handleItemClick(item)}
+                    >
+                      <span className="resume__nav-text">{item}</span>
+                    </a>
+                  </li>
+                ))}
               </ul>
             </nav>
           </div>

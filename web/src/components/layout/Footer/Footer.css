@@ -1,0 +1,165 @@
+.footer {
+  background-color: #000;
+  color: #fff;
+  padding: 40px 0 20px;
+  font-family: Arial, sans-serif;
+}
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.footer-section {
+  flex: 1 1 200px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+.footer-section:last-child {
+  margin-right: 0;
+}
+
+.footer h3 {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.footer p,
+.footer li {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #999;
+}
+
+.footer ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.footer li {
+  margin-bottom: 10px;
+}
+
+.footer a {
+  color: #999;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer a:hover {
+  color: #fff;
+}
+
+.social-icons {
+  display: flex;
+  margin-top: 20px;
+}
+
+.icon {
+  width: 30px;
+  height: 30px;
+  background-color: #333;
+  border-radius: 50%;
+  margin-right: 10px;
+  display: inline-block;
+}
+
+.icon.twitter {
+  background-image: url("path/to/twitter-icon.png");
+}
+
+.icon.facebook {
+  background-image: url("path/to/facebook-icon.png");
+}
+
+.icon.instagram {
+  background-image: url("path/to/instagram-icon.png");
+}
+
+.icon.location,
+.icon.phone,
+.icon.email {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.icon.location {
+  background-image: url("path/to/location-icon.png");
+}
+
+.icon.phone {
+  background-image: url("path/to/phone-icon.png");
+}
+
+.icon.email {
+  background-image: url("path/to/email-icon.png");
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #333;
+}
+
+.footer-bottom p {
+  font-size: 12px;
+}
+
+@media screen and (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+  }
+
+  .footer-section {
+    margin-right: 0;
+    margin-bottom: 30px;
+  }
+
+  .footer-section:last-child {
+    margin-bottom: 0;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .footer {
+    padding: 30px 0 15px;
+  }
+
+  .footer h3 {
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+
+  .footer p,
+  .footer li {
+    font-size: 12px;
+  }
+
+  .social-icons {
+    margin-top: 15px;
+  }
+
+  .icon {
+    width: 25px;
+    height: 25px;
+  }
+
+  .footer-bottom {
+    margin-top: 30px;
+    padding-top: 15px;
+  }
+
+  .footer-bottom p {
+    font-size: 10px;
+  }
+}
