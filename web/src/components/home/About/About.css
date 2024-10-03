@@ -1,7 +1,6 @@
 .about {
   display: flex;
   justify-content: center;
-  padding: 4rem 2rem;
 }
 
 .about__container {
@@ -12,7 +11,6 @@
 .about__row {
   display: flex;
   flex-wrap: wrap;
-  gap: 2rem;
 }
 
 .about__image-column,
@@ -38,6 +36,7 @@
   flex-direction: column;
   justify-content: center;
   height: 100%;
+  margin: 0 2rem;
 }
 
 .about__heading-big {
@@ -47,7 +46,7 @@
 }
 
 .about__heading-medium {
-  font-size: 2.5rem;
+  font-size: 3.2rem;
   margin-bottom: 1rem;
 }
 
@@ -83,13 +82,14 @@
 }
 
 .about__counter-number {
-  font-size: 2rem;
+  font-size: 1.4rem;
   font-weight: bold;
   color: #4169e1;
 }
 
 .about__counter-label {
-  color: #6c757d;
+  font-size: 1.2rem;
+  color: black;
 }
 
 .about__download-button {

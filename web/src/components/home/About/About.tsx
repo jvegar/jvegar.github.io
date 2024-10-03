@@ -1,6 +1,6 @@
 import "./About.css";
 import aboutImage from "../../../assets/about.jpg";
-
+import Stack from "../Stack/Stack";
 function About() {
   return (
     <section className="about" id="about-section">
@@ -39,7 +39,7 @@ function About() {
                 <div className="about__counter-text">
                   <p className="about__counter-projects">
                     <span className="about__counter-number" data-number="20">
-                      0
+                      20
                     </span>
                     <span className="about__counter-label">Projects</span>
                   </p>
@@ -53,6 +53,7 @@ function About() {
             </div>
           </div>
         </div>
+        <Stack />
       </div>
     </section>
   );

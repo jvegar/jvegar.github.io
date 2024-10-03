@@ -1,0 +1,113 @@
+.resume__nav-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.resume__nav-item {
+  margin-bottom: 20px;
+}
+
+.resume__nav-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #000;
+  font-size: 18px;
+}
+
+.resume__nav-number {
+  font-weight: bold;
+  color: #4169e1; /* Royal Blue color */
+  margin-right: 10px;
+  font-size: 24px;
+}
+
+.resume__nav-text {
+  font-weight: bold;
+}
+
+.resume__nav-link:hover .resume__nav-text {
+  color: #4169e1; /* Royal Blue color on hover */
+}
+
+.resume__nav-link--active .resume__nav-text {
+  color: #3e64ff;
+}
+
+.resume__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.resume__row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.resume__nav-column {
+  flex: 0 0 25%;
+  max-width: 25%;
+}
+
+.resume__content-column {
+  flex: 0 0 75%;
+  max-width: 75%;
+}
+
+.resume__heading {
+  font-size: 36px;
+  color: #3e64ff;
+  margin-bottom: 30px;
+}
+
+.resume__item {
+  display: flex;
+  margin-bottom: 30px;
+}
+
+.resume__item-icon {
+  flex: 0 0 60px;
+  height: 60px;
+  background-color: #3e64ff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px;
+}
+
+.resume__icon {
+  color: white;
+  font-size: 24px;
+}
+
+.resume__item-content {
+  flex: 1;
+}
+
+.resume__item-date {
+  font-size: 15px;
+  color: #3e64ff;
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.resume__item-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0 0 5px;
+}
+
+.resume__item-subtitle {
+  font-size: 16px;
+  color: #666;
+}
+
+.resume__separator {
+  border: none;
+  height: 1px;
+  background-color: #e0e0e0;
+  margin: 20px 0;
+}

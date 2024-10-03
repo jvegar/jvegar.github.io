@@ -1,0 +1,16 @@
+.stack-section__row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 3rem 0;
+}
+
+.stack-section__column {
+  flex: 1;
+  margin: 1rem;
+}
+
+.stack-section__partner {
+  display: flex;
+}
