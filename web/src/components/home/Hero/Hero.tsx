@@ -41,8 +41,8 @@ function Hero() {
     [
       "Software Engineer.",
       "FullStack Developer.",
-      "Backend Developer",
-      "Financial Investor",
+      "Backend Developer.",
+      "Financial Investor.",
     ],
     100,
     100,
@@ -50,28 +50,14 @@ function Hero() {
   );
 
   return (
-    <section className="hero hero--fullheight">
+    <section className="hero hero--fullheight" id="hero-section">
       <div className="hero__overlay"></div>
-      <div className="hero__container">
-        <div className="hero__content hero__content--centered">
-          <div className="hero__text-wrapper">
-            <div className="hero__text hero__text--centered">
-              <span className="hero__subheading">Hi! I am</span>
-              <h1 className="hero__title">Jose Vega</h1>
-              <h2 className="hero__subtitle">
-                I'm a{" "}
-                <span className="hero__rotating-text">{rotatingText}</span>
-              </h2>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="hero__mouse">
-        <a href="#" className="hero__mouse-icon">
-          <div className="hero__mouse-wheel">
-            <span className="hero__mouse-arrow"></span>
-          </div>
-        </a>
+      <div className="hero__content hero__content--centered">
+        <span className="hero__subheading">Hi! I am</span>
+        <h1 className="hero__title">Jose Vega</h1>
+        <h2 className="hero__subtitle">
+          I'm a <span className="hero__rotating-text">{rotatingText}</span>
+        </h2>
       </div>
     </section>
   );

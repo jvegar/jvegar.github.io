@@ -1,9 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Header.css";
 
 function Header() {
   const [isNavVisible, setIsNavVisible] = useState(false);
   const [activeLink, setActiveLink] = useState("#home-section");
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const toggleNav = () => {
     setIsNavVisible(!isNavVisible);
@@ -15,7 +28,10 @@ function Header() {
   };
 
   return (
-    <nav className="header" id="header">
+    <nav
+      className={`header ${isScrolled ? "header--scrolled" : ""}`}
+      id="header"
+    >
       <div className="header__container">
         <a className="header__brand" href="index.html">
           <span className="header__brand-highlight">J</span>ose Eduardo

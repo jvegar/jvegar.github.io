@@ -5,50 +5,53 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden; /* To ensure the pseudo-elements don't create scrollbars */
+  overflow: hidden;
 }
 
 .hero--fullheight {
   min-height: 100vh;
 }
 
-/* Left half background */
-.hero::before {
-  content: "";
+.hero__overlay {
   position: absolute;
   top: 0;
   left: 0;
-  width: 50%;
-  height: 100%;
-  background-color: rgba(240, 240, 255, 0.8);
+  right: 0;
+  bottom: 0;
   z-index: 0;
 }
 
-/* Right half background */
-.hero::after {
+.hero__overlay::before,
+.hero__overlay::after {
   content: "";
   position: absolute;
   top: 0;
-  right: 0;
+  bottom: 0;
   width: 50%;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 1);
-  z-index: 0;
 }
 
-.hero__container {
-  position: relative;
-  z-index: 1;
-  text-align: center;
+.hero__overlay::before {
+  left: 0;
+  background-color: rgba(240, 240, 255, 0.8);
+}
+
+.hero__overlay::after {
+  right: 0;
+  background-color: rgba(255, 255, 255, 1);
 }
 
 .hero__content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
   max-width: 800px;
-  margin: 0 auto;
+  width: 90%;
+  padding: 0 20px;
+  box-sizing: border-box;
 }
 
-.hero__text {
-  color: #000;
+.hero__content--centered {
+  margin: 0 auto;
 }
 
 .hero__subheading {
@@ -64,6 +67,7 @@
   font-size: 4rem;
   font-weight: bold;
   margin-bottom: 1rem;
+  color: #000;
 }
 
 .hero__subtitle {
@@ -83,18 +87,27 @@
 }
 
 @keyframes blink {
-  0% {
+  0%,
+  100% {
     opacity: 0;
   }
   50% {
     opacity: 1;
-  }
-  100% {
-    opacity: 0;
   }
 }
 
 /* Remove the mouse icon for now, as it's not in the image */
 .hero__mouse {
   display: none;
+}
+
+/* Media query for responsiveness */
+@media (max-width: 768px) {
+  .hero__title {
+    font-size: 3rem;
+  }
+
+  .hero__subtitle {
+    font-size: 1.5rem;
+  }
 }

@@ -7,6 +7,7 @@ import Projects from "./components/projects/Projects";
 import Blog from "./components/blog/Blog";
 import Contact from "./components/contact/Contact";
 import Footer from "./components/layout/Footer/Footer";
+import "./App.css";
 
 function App() {
   return (
