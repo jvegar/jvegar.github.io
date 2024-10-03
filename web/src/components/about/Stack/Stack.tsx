@@ -1,4 +1,4 @@
-import "./Stack.css";
+import styles from "./Stack.module.css";
 import Aws from "../../../assets/icon-aws.svg";
 import Docker from "../../../assets/icon-docker.svg";
 import Javascript from "../../../assets/icon-javascript.svg";
@@ -9,16 +9,16 @@ import Postgresql from "../../../assets/icon-postgres.svg";
 
 function Stack() {
   return (
-    <section className="stack-section" id="stack-section">
-      <div className="stack-section__container">
-        <div className="stack-section__row">
+    <section className={styles.stackSection} id="stack-section">
+      <div className={styles.stackSectionContainer}>
+        <div className={styles.stackSectionRow}>
           {[Nodejs, Javascript, Typescript, React, Postgresql, Aws, Docker].map(
             (icon, index) => (
-              <div key={index} className="stack-section__column">
-                <a href="#" className="stack-section__partner">
+              <div key={index} className={styles.stackSectionColumn}>
+                <a href="#" className={styles.stackSectionPartner}>
                   <img
                     src={icon}
-                    className="stack-section__image"
+                    className={styles.stackSectionImage}
                     alt={`Partner ${index}`}
                   />
                 </a>

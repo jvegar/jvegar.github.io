@@ -8,11 +8,11 @@
   overflow: hidden;
 }
 
-.hero--fullheight {
+.heroFullHeight {
   min-height: 100vh;
 }
 
-.hero__overlay {
+.heroOverlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -21,8 +21,8 @@
   z-index: 0;
 }
 
-.hero__overlay::before,
-.hero__overlay::after {
+.heroOverlay::before,
+.heroOverlay::after {
   content: "";
   position: absolute;
   top: 0;
@@ -30,17 +30,17 @@
   width: 50%;
 }
 
-.hero__overlay::before {
+.heroOverlay::before {
   left: 0;
   background-color: rgba(240, 240, 255, 0.8);
 }
 
-.hero__overlay::after {
+.heroOverlay::after {
   right: 0;
   background-color: rgba(255, 255, 255, 1);
 }
 
-.hero__content {
+.heroContent {
   position: relative;
   z-index: 1;
   text-align: center;
@@ -50,11 +50,11 @@
   box-sizing: border-box;
 }
 
-.hero__content--centered {
+.heroContentCentered {
   margin: 0 auto;
 }
 
-.hero__subheading {
+.heroSubheading {
   font-size: 1.2rem;
   font-weight: 700;
   color: #3e64ff; /* Royal Blue */
@@ -63,25 +63,25 @@
   text-transform: uppercase;
 }
 
-.hero__title {
+.heroTitle {
   font-size: 4rem;
   font-weight: bold;
   margin-bottom: 1rem;
   color: #000;
 }
 
-.hero__subtitle {
+.heroSubtitle {
   font-size: 2rem;
   margin-bottom: 1rem;
 }
 
-.hero__rotating-text {
+.heroRotatingText {
   color: #3e64ff; /* Royal Blue */
   font-weight: bold;
 }
 
 /* Add a blinking cursor effect */
-.hero__rotating-text::after {
+.heroRotatingText::after {
   content: "|";
   animation: blink 0.7s infinite;
 }
@@ -97,17 +97,17 @@
 }
 
 /* Remove the mouse icon for now, as it's not in the image */
-.hero__mouse {
+.heroMouse {
   display: none;
 }
 
 /* Media query for responsiveness */
 @media (max-width: 768px) {
-  .hero__title {
+  .heroTitle {
     font-size: 3rem;
   }
 
-  .hero__subtitle {
+  .heroSubtitle {
     font-size: 1.5rem;
   }
 }

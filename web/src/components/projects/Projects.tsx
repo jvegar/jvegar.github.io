@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import "./Projects.css";
+import styles from "./Projects.module.css";
 
 interface Project {
   id: number;
@@ -34,28 +34,28 @@ const mockProjects: Project[] = [
 
 function ProjectCard({ project }: { project: Project }) {
   return (
-    <motion.div whileHover={{ scale: 1.05 }} className="project-card">
+    <motion.div whileHover={{ scale: 1.05 }} className={styles.projectCard}>
       <img
         src={project.imageUrl}
         alt={project.title}
-        className="project-image"
+        className={styles.projectImage}
       />
-      <div className="project-details">
-        <h3 className="project-title">{project.title}</h3>
-        <p className="project-description">{project.description}</p>
-        <div className="project-technologies">
+      <div className={styles.projectDetails}>
+        <h3 className={styles.projectTitle}>{project.title}</h3>
+        <p className={styles.projectDescription}>{project.description}</p>
+        <div className={styles.projectTechnologies}>
           {project.technologies.map((tech, index) => (
-            <span key={index} className="technology-tag">
+            <span key={index} className={styles.technologyTag}>
               {tech}
             </span>
           ))}
         </div>
-        <div className="project-links">
+        <div className={styles.projectLinks}>
           <a
             href={project.githubUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="github-link"
+            className={styles.githubLink}
           >
             GitHub
           </a>
@@ -64,7 +64,7 @@ function ProjectCard({ project }: { project: Project }) {
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="live-demo-link"
+              className={styles.liveDemoLink}
             >
               Live Demo
             </a>
@@ -77,10 +77,10 @@ function ProjectCard({ project }: { project: Project }) {
 
 function Projects() {
   return (
-    <section className="projects-section" id="projects-section">
-      <div className="container">
-        <h2 className="section-title">Projects</h2>
-        <div className="projects-grid">
+    <section className={styles.projectsSection} id="projects-section">
+      <div className={styles.container}>
+        <h2 className={styles.sectionTitle}>Projects</h2>
+        <div className={styles.projectsGrid}>
           {mockProjects.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}

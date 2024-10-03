@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./Resume.css";
+import styles from "./Resume.module.css";
 
 function Resume() {
   const [activeSection, setActiveSection] = useState("Education");
@@ -115,107 +115,131 @@ function Resume() {
       <>
         <div
           id="page-education"
-          className="resume__page resume__page--education"
+          className={`${styles.resumePage} ${styles.resumePageEducation}`}
         >
-          <h2 className="resume__heading">Education</h2>
+          <h2 className={styles.resumeHeading}>Education</h2>
           {educationData.map((item, index) => (
             <React.Fragment key={index}>
-              <div className="resume__item resume__item--education">
-                <div className="resume__item-icon">
-                  <span className="resume__icon resume__icon--ideas"></span>
+              <div
+                className={`${styles.resumeItem} ${styles.resumeItemEducation}`}
+              >
+                <div className={styles.resumeItemIcon}>
+                  <span
+                    className={`${styles.resumeIcon} ${styles.resumeIconIdeas}`}
+                  ></span>
                 </div>
-                <div className="resume__item-content">
-                  <span className="resume__item-date">{item.date}</span>
-                  <h2 className="resume__item-title">{item.title}</h2>
-                  <span className="resume__item-subtitle">{item.subtitle}</span>
+                <div className={styles.resumeItemContent}>
+                  <span className={styles.resumeItemDate}>{item.date}</span>
+                  <h2 className={styles.resumeItemTitle}>{item.title}</h2>
+                  <span className={styles.resumeItemSubtitle}>
+                    {item.subtitle}
+                  </span>
                 </div>
               </div>
               {index < educationData.length - 1 && (
-                <hr className="resume__separator" />
+                <hr className={styles.resumeSeparator} />
               )}
             </React.Fragment>
           ))}
         </div>
         <div
           id="page-experience"
-          className="resume__page resume__page--experience"
+          className={`${styles.resumePage} ${styles.resumePageExperience}`}
         >
-          <h2 className="resume__heading">Experience</h2>
+          <h2 className={styles.resumeHeading}>Experience</h2>
           {experienceData.map((item, index) => (
             <React.Fragment key={index}>
-              <div className="resume__item resume__item--experience">
-                <div className="resume__item-icon">
-                  <span className="resume__icon resume__icon--briefcase"></span>
+              <div
+                className={`${styles.resumeItem} ${styles.resumeItemExperience}`}
+              >
+                <div className={styles.resumeItemIcon}>
+                  <span
+                    className={`${styles.resumeIcon} ${styles.resumeIconBriefcase}`}
+                  ></span>
                 </div>
-                <div className="resume__item-content">
-                  <span className="resume__item-date">{item.date}</span>
-                  <h2 className="resume__item-title">{item.title}</h2>
+                <div className={styles.resumeItemContent}>
+                  <span className={styles.resumeItemDate}>{item.date}</span>
+                  <h2 className={styles.resumeItemTitle}>{item.title}</h2>
                   {item.company && (
-                    <span className="resume__item-subtitle">
+                    <span className={styles.resumeItemSubtitle}>
                       {item.company}
                     </span>
                   )}
                 </div>
               </div>
               {index < experienceData.length - 1 && (
-                <hr className="resume__separator" />
+                <hr className={styles.resumeSeparator} />
               )}
             </React.Fragment>
           ))}
         </div>
-        <div id="page-skills" className="resume__page resume__page--skills">
-          <h2 className="resume__heading">Skills</h2>
-          <div className="resume__skills-grid">
+        <div
+          id="page-skills"
+          className={`${styles.resumePage} ${styles.resumePageSkills}`}
+        >
+          <h2 className={styles.resumeHeading}>Skills</h2>
+          <div className={styles.resumeSkillsGrid}>
             {skillsData.map((skill, index) => (
-              <div key={index} className="resume__skill-card">
+              <div key={index} className={styles.resumeSkillCard}>
                 <h3>{skill.name}</h3>
-                <div className="resume__skill-circle">
-                  <svg viewBox="0 0 36 36" className="resume__skill-circle-svg">
+                <div className={styles.resumeSkillCircle}>
+                  <svg
+                    viewBox="0 0 36 36"
+                    className={styles.resumeSkillCircleSvg}
+                  >
                     <path
-                      className="resume__skill-circle-bg"
+                      className={styles.resumeSkillCircleBg}
                       d="M18 2.0845
                         a 15.9155 15.9155 0 0 1 0 31.831
                         a 15.9155 15.9155 0 0 1 0 -31.831"
                     />
                     <path
-                      className="resume__skill-circle-progress"
+                      className={styles.resumeSkillCircleProgress}
                       strokeDasharray={`${skill.percentage}, 100`}
                       d="M18 2.0845
                         a 15.9155 15.9155 0 0 1 0 31.831
                         a 15.9155 15.9155 0 0 1 0 -31.831"
                     />
-                    <text x="18" y="20.35" className="resume__skill-percentage">
+                    <text
+                      x="18"
+                      y="20.35"
+                      className={styles.resumeSkillPercentage}
+                    >
                       {skill.percentage}%
                     </text>
                   </svg>
                 </div>
-                <div className="resume__skill-stats">
-                  <div className="resume__skill-stat">
-                    <span className="resume__skill-stat-value">
+                <div className={styles.resumeSkillStats}>
+                  <div className={styles.resumeSkillStat}>
+                    <span className={styles.resumeSkillStatValue}>
                       {skill.lastWeek}%
                     </span>
-                    <span className="resume__skill-stat-label">Last week</span>
+                    <span className={styles.resumeSkillStatLabel}>
+                      Last week
+                    </span>
                   </div>
-                  <div className="resume__skill-stat">
-                    <span className="resume__skill-stat-value">
+                  <div className={styles.resumeSkillStat}>
+                    <span className={styles.resumeSkillStatValue}>
                       {skill.lastMonth}%
                     </span>
-                    <span className="resume__skill-stat-label">Last month</span>
+                    <span className={styles.resumeSkillStatLabel}>
+                      Last month
+                    </span>
                   </div>
                 </div>
               </div>
             ))}
           </div>
-          <div className="resume__additional-skills">
+          <div className={styles.resumeAdditionalSkills}>
             {additionalSkills.map((skill, index) => (
-              <div key={index} className="resume__skill-bar">
-                <div className="resume__skill-bar-info">
+              <div key={index} className={styles.resumeSkillBar}>
+                <div className={styles.resumeSkillBarInfo}>
                   <span>{skill.name}</span>
                   <span>{skill.percentage}%</span>
                 </div>
-                <div className="resume__skill-bar-bg">
+                <div className={styles.resumeSkillBarBg}>
                   <div
-                    className="resume__skill-bar-progress"
+                    className={styles.resumeSkillBarProgress}
                     style={{ width: `${skill.percentage}%` }}
                   ></div>
                 </div>
@@ -228,29 +252,32 @@ function Resume() {
   };
 
   return (
-    <section className="resume resume--section" id="resume-section">
-      <div className="resume__container">
-        <div className="resume__row">
-          <div className="resume__nav-column">
-            <nav className="resume__nav" id="navi">
-              <ul className="resume__nav-list">
+    <section
+      className={`${styles.resume} ${styles.resumeSection}`}
+      id="resume-section"
+    >
+      <div className={styles.resumeContainer}>
+        <div className={styles.resumeRow}>
+          <div className={styles.resumeNavColumn}>
+            <nav className={styles.resumeNav} id="navi">
+              <ul className={styles.resumeNavList}>
                 {["Education", "Experience", "Skills"].map((item) => (
-                  <li key={item} className="resume__nav-item">
+                  <li key={item} className={styles.resumeNavItem}>
                     <a
                       href={`#${item.toLowerCase()}`}
-                      className={`resume__nav-link ${
-                        activeSection === item ? "resume__nav-link--active" : ""
+                      className={`${styles.resumeNavLink} ${
+                        activeSection === item ? styles.resumeNavLinkActive : ""
                       }`}
                       onClick={() => handleItemClick(item)}
                     >
-                      <span className="resume__nav-text">{item}</span>
+                      <span className={styles.resumeNavText}>{item}</span>
                     </a>
                   </li>
                 ))}
               </ul>
             </nav>
           </div>
-          <div className="resume__content-column">{renderContent()}</div>
+          <div className={styles.resumeContentColumn}>{renderContent()}</div>
         </div>
       </div>
     </section>

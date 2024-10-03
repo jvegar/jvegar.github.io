@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Contact.css";
+import styles from "./Contact.module.css";
 
 function Contact() {
   const [formData, setFormData] = useState({
@@ -25,10 +25,10 @@ function Contact() {
   };
 
   return (
-    <div className="contact-container" id="contact-section">
+    <div className={styles.contactContainer} id="contact-section">
       <h1>Contact Us</h1>
-      <form className="contact-form" onSubmit={handleSubmit}>
-        <div className="form-group">
+      <form className={styles.contactForm} onSubmit={handleSubmit}>
+        <div className={styles.formGroup}>
           <label htmlFor="name">Name:</label>
           <input
             type="text"
@@ -39,7 +39,7 @@ function Contact() {
             required
           />
         </div>
-        <div className="form-group">
+        <div className={styles.formGroup}>
           <label htmlFor="email">Email:</label>
           <input
             type="email"
@@ -50,7 +50,7 @@ function Contact() {
             required
           />
         </div>
-        <div className="form-group">
+        <div className={styles.formGroup}>
           <label htmlFor="message">Message:</label>
           <textarea
             id="message"
@@ -60,7 +60,7 @@ function Contact() {
             required
           ></textarea>
         </div>
-        <button type="submit" className="submit-button">
+        <button type="submit" className={styles.submitButton}>
           Send Message
         </button>
       </form>

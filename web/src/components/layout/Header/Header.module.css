@@ -8,7 +8,7 @@
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.header__container {
+.headerContainer {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -17,20 +17,20 @@
   padding: 0 20px;
 }
 
-.header__brand {
+.headerBrand {
   font-weight: 900;
   font-size: 26px;
   text-decoration: none;
   color: #000000;
 }
 
-.header__brand-highlight {
+.headerBrandHighlight {
   color: #ffffff;
   position: relative;
   z-index: -1;
 }
 
-.header__brand-highlight::before {
+.headerBrandHighlight::before {
   content: "";
   position: absolute;
   top: 50%;
@@ -43,22 +43,22 @@
   z-index: -1;
 }
 
-.header__toggle {
+.headerToggle {
   display: none; /* Hide on desktop */
 }
 
-.header__nav-list {
+.headerNavList {
   display: flex;
   list-style-type: none;
   padding: 0;
   margin: 0;
 }
 
-.header__nav-item {
+.headerNavItem {
   margin: 0 15px;
 }
 
-.header__nav-link {
+.headerNavLink {
   text-decoration: none;
   color: #000000;
   font-size: 16px;
@@ -66,7 +66,7 @@
   padding-bottom: 5px;
 }
 
-.header__nav-link::after {
+.headerNavLink::after {
   content: "";
   position: absolute;
   width: 0;
@@ -77,18 +77,18 @@
   transition: width 0.3s ease-in-out;
 }
 
-.header__nav-link:hover::after,
-.header__nav-link--active::after {
+.headerNavLink:hover::after,
+.headerNavLinkActive::after {
   width: 100%;
 }
 
-.header__nav-link--active {
+.headerNavLinkActive {
   font-weight: bold;
 }
 
 /* Responsive design for mobile */
 @media (max-width: 768px) {
-  .header__toggle {
+  .headerToggle {
     display: block;
     background: none;
     border: none;
@@ -96,7 +96,7 @@
     cursor: pointer;
   }
 
-  .header__nav {
+  .headerNav {
     display: none;
     position: absolute;
     top: 100%;
@@ -106,20 +106,20 @@
     padding: 20px;
   }
 
-  .header__nav.show {
+  .headerNav.show {
     display: block;
   }
 
-  .header__nav-list {
+  .headerNavList {
     flex-direction: column;
   }
 
-  .header__nav-item {
+  .headerNavItem {
     margin: 10px 0;
   }
 }
 
-.header--scrolled {
+.headerScrolled {
   background-color: white;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }

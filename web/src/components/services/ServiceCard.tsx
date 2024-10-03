@@ -1,3 +1,5 @@
+import styles from "./Services.module.css";
+
 interface ServiceCardProps {
   icon: string;
   title: string;
@@ -5,8 +7,8 @@ interface ServiceCardProps {
 
 function ServiceCard({ icon, title }: ServiceCardProps) {
   return (
-    <div className="service-card">
-      <div className="service-icon">{icon}</div>
+    <div className={styles.serviceCard}>
+      <div className={styles.serviceIcon}>{icon}</div>
       <h3>{title}</h3>
     </div>
   );

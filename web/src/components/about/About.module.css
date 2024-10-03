@@ -3,35 +3,35 @@
   justify-content: center;
 }
 
-.about__container {
+.aboutContainer {
   max-width: 1200px;
   width: 100%;
 }
 
-.about__row {
+.aboutRow {
   display: flex;
   flex-wrap: wrap;
 }
 
-.about__image-column,
-.about__content-column {
+.aboutImageColumn,
+.aboutContentColumn {
   flex: 1;
   min-width: 300px;
 }
 
-.about__image-wrapper {
+.aboutImageWrapper {
   position: relative;
   height: 100%;
   min-height: 400px;
 }
 
-.about__image {
+.aboutImage {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.about__content-wrapper {
+.aboutContentWrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -39,60 +39,60 @@
   margin: 0 2rem;
 }
 
-.about__heading-big {
+.aboutHeadingBig {
   font-size: 3rem;
   color: #e6e6e6;
   margin-bottom: -1rem;
 }
 
-.about__heading-medium {
+.aboutHeadingMedium {
   font-size: 3.2rem;
   margin-bottom: 1rem;
 }
 
-.about__description {
+.aboutDescription {
   margin-bottom: 1.5rem;
   color: #6c757d;
 }
 
-.about__info-list {
+.aboutInfoList {
   list-style-type: none;
   padding: 0;
 }
 
-.about__info-item {
+.aboutInfoItem {
   display: flex;
   margin-bottom: 0.5rem;
 }
 
-.about__info-label {
+.aboutInfoLabel {
   font-weight: bold;
   min-width: 80px;
 }
 
-.about__counter {
+.aboutCounter {
   margin-top: 2rem;
 }
 
-.about__counter-projects {
+.aboutCounterProjects {
   display: flex;
   align-items: baseline;
   gap: 0.5rem;
   margin-bottom: 1rem;
 }
 
-.about__counter-number {
+.aboutCounterNumber {
   font-size: 1.4rem;
   font-weight: bold;
   color: #4169e1;
 }
 
-.about__counter-label {
+.aboutCounterLabel {
   font-size: 1.2rem;
   color: black;
 }
 
-.about__download-button {
+.aboutDownloadButton {
   display: inline-block;
   padding: 0.75rem 1.5rem;
   background-color: #4169e1;
@@ -102,16 +102,16 @@
   transition: background-color 0.3s ease;
 }
 
-.about__download-button:hover {
+.aboutDownloadButton:hover {
   background-color: #3255b1;
 }
 
 @media (max-width: 768px) {
-  .about__row {
+  .aboutRow {
     flex-direction: column;
   }
 
-  .about__image-wrapper {
+  .aboutImageWrapper {
     min-height: 300px;
   }
 }

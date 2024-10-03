@@ -5,7 +5,7 @@
   font-family: Arial, sans-serif;
 }
 
-.footer-content {
+.footerContent {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -14,13 +14,13 @@
   padding: 0 20px;
 }
 
-.footer-section {
+.footerSection {
   flex: 1 1 200px;
   margin-right: 20px;
   margin-bottom: 20px;
 }
 
-.footer-section:last-child {
+.footerSection:last-child {
   margin-right: 0;
 }
 
@@ -55,7 +55,7 @@
   color: #fff;
 }
 
-.social-icons {
+.socialIcons {
   display: flex;
   margin-top: 20px;
 }
@@ -69,21 +69,21 @@
   display: inline-block;
 }
 
-.icon.twitter {
+.iconTwitter {
   background-image: url("path/to/twitter-icon.png");
 }
 
-.icon.facebook {
+.iconFacebook {
   background-image: url("path/to/facebook-icon.png");
 }
 
-.icon.instagram {
+.iconInstagram {
   background-image: url("path/to/instagram-icon.png");
 }
 
-.icon.location,
-.icon.phone,
-.icon.email {
+.iconLocation,
+.iconPhone,
+.iconEmail {
   display: inline-block;
   width: 16px;
   height: 16px;
@@ -92,40 +92,40 @@
   background-repeat: no-repeat;
 }
 
-.icon.location {
+.iconLocation {
   background-image: url("path/to/location-icon.png");
 }
 
-.icon.phone {
+.iconPhone {
   background-image: url("path/to/phone-icon.png");
 }
 
-.icon.email {
+.iconEmail {
   background-image: url("path/to/email-icon.png");
 }
 
-.footer-bottom {
+.footerBottom {
   text-align: center;
   margin-top: 40px;
   padding-top: 20px;
   border-top: 1px solid #333;
 }
 
-.footer-bottom p {
+.footerBottom p {
   font-size: 12px;
 }
 
 @media screen and (max-width: 768px) {
-  .footer-content {
+  .footerContent {
     flex-direction: column;
   }
 
-  .footer-section {
+  .footerSection {
     margin-right: 0;
     margin-bottom: 30px;
   }
 
-  .footer-section:last-child {
+  .footerSection:last-child {
     margin-bottom: 0;
   }
 }
@@ -145,7 +145,7 @@
     font-size: 12px;
   }
 
-  .social-icons {
+  .socialIcons {
     margin-top: 15px;
   }
 
@@ -154,12 +154,12 @@
     height: 25px;
   }
 
-  .footer-bottom {
+  .footerBottom {
     margin-top: 30px;
     padding-top: 15px;
   }
 
-  .footer-bottom p {
+  .footerBottom p {
     font-size: 10px;
   }
 }

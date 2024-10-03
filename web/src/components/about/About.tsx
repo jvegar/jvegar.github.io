@@ -1,50 +1,53 @@
-import "./About.css";
+import styles from "./About.module.css";
 import aboutImage from "../../assets/about.jpg";
 import Stack from "./Stack/Stack";
 function About() {
   return (
-    <section className="about" id="about-section">
-      <div className="about__container">
-        <div className="about__row">
-          <div className="about__image-column">
-            <div className="about__image-wrapper">
-              <div className="about__image-overlay"></div>
-              <img src={aboutImage} alt="About" className="about__image" />
+    <section className={styles.about} id="about-section">
+      <div className={styles.aboutContainer}>
+        <div className={styles.aboutRow}>
+          <div className={styles.aboutImageColumn}>
+            <div className={styles.aboutImageWrapper}>
+              <div className={styles.aboutImageOverlay}></div>
+              <img src={aboutImage} alt="About" className={styles.aboutImage} />
             </div>
           </div>
-          <div className="about__content-column">
-            <div className="about__content-wrapper">
-              <div className="about__heading">
-                <h2 className="about__heading-medium">About me</h2>
-                <p className="about__description">
+          <div className={styles.aboutContentColumn}>
+            <div className={styles.aboutContentWrapper}>
+              <div className={styles.aboutHeading}>
+                <h2 className={styles.aboutHeadingMedium}>About me</h2>
+                <p className={styles.aboutDescription}>
                   IT professional with more than 10 years of experience in Web
                   Development, Cloud Infrastructure, Financial Advisory.
                 </p>
-                <ul className="about__info-list">
-                  <li className="about__info-item">
-                    <span className="about__info-label">Name:</span>
-                    <span className="about__info-value">Jose Vega</span>
+                <ul className={styles.aboutInfoList}>
+                  <li className={styles.aboutInfoItem}>
+                    <span className={styles.aboutInfoLabel}>Name:</span>
+                    <span className={styles.aboutInfoValue}>Jose Vega</span>
                   </li>
-                  <li className="about__info-item">
-                    <span className="about__info-label">Email:</span>
-                    <span className="about__info-value">jvegar@uni.pe</span>
+                  <li className={styles.aboutInfoItem}>
+                    <span className={styles.aboutInfoLabel}>Email:</span>
+                    <span className={styles.aboutInfoValue}>jvegar@uni.pe</span>
                   </li>
-                  <li className="about__info-item">
-                    <span className="about__info-label">Phone: </span>
-                    <span className="about__info-value">+51-991139451</span>
+                  <li className={styles.aboutInfoItem}>
+                    <span className={styles.aboutInfoLabel}>Phone: </span>
+                    <span className={styles.aboutInfoValue}>+51-991139451</span>
                   </li>
                 </ul>
               </div>
-              <div className="about__counter">
-                <div className="about__counter-text">
-                  <p className="about__counter-projects">
-                    <span className="about__counter-number" data-number="20">
+              <div className={styles.aboutCounter}>
+                <div className={styles.aboutCounterText}>
+                  <p className={styles.aboutCounterProjects}>
+                    <span
+                      className={styles.aboutCounterNumber}
+                      data-number="20"
+                    >
                       20
                     </span>
-                    <span className="about__counter-label">Projects</span>
+                    <span className={styles.aboutCounterLabel}>Projects</span>
                   </p>
-                  <p className="about__counter-cta">
-                    <a href="#" className="about__download-button">
+                  <p className={styles.aboutCounterCta}>
+                    <a href="#" className={styles.aboutDownloadButton}>
                       Download Resume
                     </a>
                   </p>

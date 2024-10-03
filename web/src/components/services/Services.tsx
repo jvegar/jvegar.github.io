@@ -1,5 +1,5 @@
 import ServiceCard from "./ServiceCard";
-import "./Services.css";
+import styles from "./Services.module.css";
 
 const services = [
   { icon: "🔍", title: "WEB DESIGN" },
@@ -12,10 +12,10 @@ const services = [
 
 function Services() {
   return (
-    <div className="services-container" id="services-section">
+    <div className={styles.servicesContainer} id="services-section">
       <h1>Services</h1>
       <p>I offer different services.</p>
-      <div className="services-grid">
+      <div className={styles.servicesGrid}>
         {services.map((service, index) => (
           <ServiceCard key={index} icon={service.icon} title={service.title} />
         ))}

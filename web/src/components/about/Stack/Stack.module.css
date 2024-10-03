@@ -1,4 +1,4 @@
-.stack-section__row {
+.stackSectionRow {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -6,11 +6,11 @@
   margin: 3rem 0;
 }
 
-.stack-section__column {
+.stackSectionColumn {
   flex: 1;
   margin: 1rem;
 }
 
-.stack-section__partner {
+.stackSectionPartner {
   display: flex;
 }

@@ -1,22 +1,22 @@
-import "./Footer.css";
+import styles from "./Footer.module.css";
 
 function Footer() {
   return (
-    <footer className="footer">
-      <div className="footer-content">
-        <div className="footer-section">
+    <footer className={styles.footer}>
+      <div className={styles.footerContent}>
+        <div className={styles.footerSection}>
           <h3>About me</h3>
           <p>
             This is my personal website where you can learn a little more about
             me.
           </p>
-          <div className="social-icons">
-            <a href="#" className="icon twitter"></a>
-            <a href="#" className="icon facebook"></a>
-            <a href="#" className="icon instagram"></a>
+          <div className={styles.socialIcons}>
+            <a href="#" className={styles.iconTwitter}></a>
+            <a href="#" className={styles.iconFacebook}></a>
+            <a href="#" className={styles.iconInstagram}></a>
           </div>
         </div>
-        <div className="footer-section">
+        <div className={styles.footerSection}>
           <h3>Links</h3>
           <ul>
             <li>
@@ -36,7 +36,7 @@ function Footer() {
             </li>
           </ul>
         </div>
-        <div className="footer-section">
+        <div className={styles.footerSection}>
           <h3>Services</h3>
           <ul>
             <li>Web Design</li>
@@ -46,22 +46,22 @@ function Footer() {
             <li>Graphic Design</li>
           </ul>
         </div>
-        <div className="footer-section">
+        <div className={styles.footerSection}>
           <h3>Have questions?</h3>
           <ul>
             <li>
-              <i className="icon location"></i> Lima, Perú
+              <i className={styles.iconLocation}></i> Lima, Perú
             </li>
             <li>
-              <i className="icon phone"></i> +51 991139451
+              <i className={styles.iconPhone}></i> +51 991139451
             </li>
             <li>
-              <i className="icon email"></i> jvegar@uni.pe
+              <i className={styles.iconEmail}></i> jvegar@uni.pe
             </li>
           </ul>
         </div>
       </div>
-      <div className="footer-bottom">
+      <div className={styles.footerBottom}>
         <p>Copyright © 2024 All rights reserved</p>
       </div>
     </footer>

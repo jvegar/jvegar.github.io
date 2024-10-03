@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import "./Hero.css";
+import styles from "./Hero.module.css";
 
 function useTextRotation(
   toRotate: string[],
@@ -50,13 +50,13 @@ function Hero() {
   );
 
   return (
-    <section className="hero hero--fullheight" id="hero-section">
-      <div className="hero__overlay"></div>
-      <div className="hero__content hero__content--centered">
-        <span className="hero__subheading">Hi! I am</span>
-        <h1 className="hero__title">Jose Vega</h1>
-        <h2 className="hero__subtitle">
-          I'm a <span className="hero__rotating-text">{rotatingText}</span>
+    <section className={styles.hero} id="hero-section">
+      <div className={styles.heroOverlay}></div>
+      <div className={styles.heroContent}>
+        <span className={styles.heroSubheading}>Hi! I am</span>
+        <h1 className={styles.heroTitle}>Jose Vega</h1>
+        <h2 className={styles.heroSubtitle}>
+          I'm a <span className={styles.heroRotatingText}>{rotatingText}</span>
         </h2>
       </div>
     </section>
