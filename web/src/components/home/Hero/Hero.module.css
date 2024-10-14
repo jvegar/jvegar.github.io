@@ -84,6 +84,7 @@
 .heroRotatingText::after {
   content: "|";
   animation: blink 0.7s infinite;
+  color: #000;
 }
 
 @keyframes blink {

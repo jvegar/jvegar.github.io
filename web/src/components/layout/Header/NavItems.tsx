@@ -1,4 +1,5 @@
 import styles from "./Header.module.css";
+import { Link } from "react-scroll";
 
 interface NavItemProps {
   href: string;
@@ -10,15 +11,17 @@ interface NavItemProps {
 function NavItem({ href, text, isActive, onClick }: NavItemProps) {
   return (
     <li className={styles.headerNavItem}>
-      <a
-        href={href}
+      <Link
+        to={href.split("#")[1]}
         className={`${styles.headerNavLink} ${
           isActive ? styles.headerNavLinkActive : ""
         }`}
+        smooth={true}
+        duration={500}
         onClick={() => onClick(href)}
       >
         <span>{text}</span>
-      </a>
+      </Link>
     </li>
   );
 }
