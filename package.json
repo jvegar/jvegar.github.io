@@ -9,7 +9,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "web": "npm run dev --workspace=web",
     "build:web": "npm run build --workspace=web",
-    "publish:web": "cp -r web/dist/* ."
+    "publish:web": "rm -rf assets && cp -r web/dist/* ."
   },
   "keywords": [],
   "author": "",

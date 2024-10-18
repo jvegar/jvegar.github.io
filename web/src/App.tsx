@@ -6,17 +6,20 @@ import Services from "./components/services/Services";
 import Projects from "./components/projects/Projects";
 import Contact from "./components/contact/Contact";
 import "./App.css";
+import { ScrollSpyProvider } from "./components/layout/Header/useScrollSpyContex";
 
 function App() {
   return (
-    <Layout>
-      <Home />
-      <About />
-      <Resume />
-      <Services />
-      <Projects />
-      <Contact />
-    </Layout>
+    <ScrollSpyProvider>
+      <Layout>
+        <Home />
+        <About />
+        <Resume />
+        <Services />
+        <Projects />
+        <Contact />
+      </Layout>
+    </ScrollSpyProvider>
   );
 }
 
