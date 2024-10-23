@@ -7,6 +7,7 @@ import Projects from "./components/projects/Projects";
 import Contact from "./components/contact/Contact";
 import "./App.css";
 import { ScrollSpyProvider } from "./components/layout/Header/useScrollSpyContex";
+import MyPlatform from "./components/my-platform/MyPlatform";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Services />
         <Projects />
         <Contact />
+        <MyPlatform />
       </Layout>
     </ScrollSpyProvider>
   );
