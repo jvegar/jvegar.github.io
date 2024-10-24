@@ -3,22 +3,11 @@ import { useScrollPosition } from "./useScrollPosition";
 import styles from "./Header.module.css";
 import NavItems from "./NavItems";
 import { useScrollSpyContext } from "./useScrollSpyContex";
-// import useScrollSpy from "./useScrollSpy";
 
 function Header() {
   const [isNavVisible, setIsNavVisible] = useState(false);
   const isScrolled = useScrollPosition();
 
-  // Add your section IDs here
-  // const sectionIds = [
-  //   "home-section",
-  //   "about-section",
-  //   "resume-section",
-  //   "services-section",
-  //   "projects-section",
-  //   "contact-section",
-  // ];
-  // const activeSection = useScrollSpy(sectionIds);
   const { activeSection } = useScrollSpyContext();
 
   const toggleNav = () => {
@@ -45,7 +34,7 @@ function Header() {
           aria-expanded={isNavVisible}
           aria-label="Toggle navigation"
         >
-          <span className={styles.headerToggleIcon}></span> Menu
+          <span className={styles.headerToggleIcon}></span>
         </button>
 
         <div
