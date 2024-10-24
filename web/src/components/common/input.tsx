@@ -1,3 +1,7 @@
+import { FC } from "react";
+import styles from "./Input.module.css";
+import { clsx } from "clsx";
+
 interface InputProps {
   label: string;
   name: string;
@@ -10,18 +14,20 @@ interface InputProps {
   error?: string;
 }
 
-export const Input = ({ label, error, ...props }: InputProps) => (
-  <div className="space-y-1">
-    <label className="block text-sm font-medium text-gray-700">{label}</label>
-    <input
-      {...props}
-      className={`
-          w-full px-3 py-2 border rounded-lg shadow-sm 
-          focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500
-          disabled:bg-gray-100 disabled:cursor-not-allowed
-          ${error ? "border-red-500" : "border-gray-300"}
-        `}
-    />
-    {error && <p className="text-sm text-red-500 mt-1">{error}</p>}
-  </div>
-);
+export const Input: FC<InputProps> = ({ label, error, ...props }) => {
+  const inputClassName = clsx(styles.input, {
+    [styles.inputError]: error,
+  });
+
+  return (
+    <div className={styles.inputWrapper}>
+      <label className={styles.inputLabel} htmlFor={props.name}>
+        {label}
+      </label>
+
+      <input {...props} id={props.name} className={inputClassName} />
+
+      {error && <p className={styles.inputErrorMessage}>{error}</p>}
+    </div>
+  );
+};

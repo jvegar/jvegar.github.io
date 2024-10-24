@@ -1,28 +1,29 @@
 import { useState } from "react";
-import { Alert } from "../../common/alert";
-import { Input } from "../../common/input";
-import { Button } from "../../common/button";
+import { Alert } from "../../common/Alert";
+import { Input } from "../../common/Input";
+import { Button } from "../../common/Button";
+import styles from "./LoginPage.module.css";
 
 function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [formData, setFormData] = useState({
-    username: "",
+    emailOrUsername: "",
     password: "",
   });
   const [validationErrors, setValidationErrors] = useState({
-    username: "",
+    emailOrUsername: "",
     password: "",
   });
 
   const validateForm = () => {
     const errors = {
-      username: "",
+      emailOrUsername: "",
       password: "",
     };
 
-    if (!formData.username.trim()) {
-      errors.username = "Username is required";
+    if (!formData.emailOrUsername.trim()) {
+      errors.emailOrUsername = "Username is required";
     }
 
     if (!formData.password) {
@@ -55,12 +56,24 @@ function LoginPage() {
     if (!validateForm()) return;
 
     setIsLoading(true);
-    setError("");
 
     try {
-      // Add your authentication logic here
-      await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate API call
-      throw new Error("Invalid username or password");
+      const response = await fetch(
+        "https://nest-local-oauth.onrender.com/api/auth/sign-in",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Authentication failed");
+      }
+
+      const data = await response.json();
+      console.log(data);
+      // Handle successful login (e.g., store token, redirect)
     } catch (err) {
       setError((err as Error).message);
     } finally {
@@ -69,31 +82,29 @@ function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4 py-12">
-      <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-xl shadow-lg">
+    <div className={styles.login}>
+      <div className={styles.loginContainer}>
         {/* Header */}
-        <div className="text-center">
-          <h2 className="text-3xl font-bold text-gray-900">Welcome back</h2>
-          <p className="mt-2 text-sm text-gray-600">
-            Please sign in to your account
-          </p>
+        <div className={styles.loginHeader}>
+          <h2 className={styles.loginTitle}>Welcome back</h2>
+          <p className={styles.loginSubtitle}>Please sign in to your account</p>
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="mt-8 space-y-6">
+        <form onSubmit={handleSubmit} className={styles.loginForm}>
           <Alert message={error} />
 
-          <div className="space-y-4">
+          <div className={styles.loginFormFields}>
             <Input
-              label="Username"
-              name="username"
+              label="EmailOrUsername"
+              name="emailOrUsername"
               type="text"
               placeholder="Enter your username"
               required
               disabled={isLoading}
-              value={formData.username}
+              value={formData.emailOrUsername}
               onChange={handleInputChange}
-              error={validationErrors.username}
+              error={validationErrors.emailOrUsername}
             />
 
             <Input
@@ -110,10 +121,10 @@ function LoginPage() {
           </div>
 
           {/* Forgot Password Link */}
-          <div className="text-right">
+          <div className={styles.loginForgotPassword}>
             <a
               href="/forgot-password"
-              className="text-sm text-blue-600 hover:text-blue-500 hover:underline"
+              className={styles.loginForgotPasswordLink}
             >
               Forgot password?
             </a>
@@ -125,12 +136,9 @@ function LoginPage() {
           </Button>
 
           {/* Sign Up Link */}
-          <div className="text-center text-sm text-gray-600">
+          <div className={styles.loginSignup}>
             Don't have an account?{" "}
-            <a
-              href="/register"
-              className="font-medium text-blue-600 hover:text-blue-500 hover:underline"
-            >
+            <a href="/register" className={styles.loginSignupLink}>
               Sign up
             </a>
           </div>

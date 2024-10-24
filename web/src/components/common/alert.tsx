@@ -1,3 +1,6 @@
+import styles from "./Alert.module.css";
+import { clsx } from "clsx";
+
 type AlertType = "error" | "success";
 
 interface AlertProps {
@@ -6,18 +9,18 @@ interface AlertProps {
 }
 
 export const Alert = ({ message, type = "error" }: AlertProps) => {
-  const styles = {
-    error: "bg-red-50 text-red-700 border-red-200",
-    success: "bg-green-50 text-green-700 border-green-200",
-  };
+  if (!message) return null;
 
-  return message ? (
-    <div
-      className={`p-4 rounded-lg border ${styles[type]} text-sm flex items-start`}
-    >
+  const alertStyles = clsx(styles.alert, {
+    [styles.alertError]: type === "error",
+    [styles.alertSuccess]: type === "success",
+  });
+
+  return (
+    <div className={alertStyles}>
       {type === "error" && (
         <svg
-          className="h-5 w-5 mr-2 flex-shrink-0"
+          className={styles.alertIcon}
           viewBox="0 0 20 20"
           fill="currentColor"
         >
@@ -30,5 +33,5 @@ export const Alert = ({ message, type = "error" }: AlertProps) => {
       )}
       {message}
     </div>
-  ) : null;
+  );
 };
