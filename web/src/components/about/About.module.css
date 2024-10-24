@@ -48,6 +48,7 @@
 .aboutHeadingMedium {
   font-size: 3.2rem;
   margin-bottom: 1rem;
+  font-weight: bold;
 }
 
 .aboutDescription {
@@ -84,7 +85,7 @@
 .aboutCounterNumber {
   font-size: 1.4rem;
   font-weight: bold;
-  color: #4169e1;
+  color: #3e64ff;
 }
 
 .aboutCounterLabel {
@@ -95,7 +96,7 @@
 .aboutDownloadButton {
   display: inline-block;
   padding: 0.75rem 1.5rem;
-  background-color: #4169e1;
+  background-color: #3e64ff;
   color: white;
   text-decoration: none;
   border-radius: 25px;
@@ -103,7 +104,7 @@
 }
 
 .aboutDownloadButton:hover {
-  background-color: #3255b1;
+  background-color: #1d4ed8;
 }
 
 @media (max-width: 768px) {

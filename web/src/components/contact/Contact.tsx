@@ -26,7 +26,7 @@ function Contact() {
 
   return (
     <div className={styles.contactContainer} id="contact-section">
-      <h1>Contact Us</h1>
+      <h1 className={styles.contactTitle}>Contact Us</h1>
       <form className={styles.contactForm} onSubmit={handleSubmit}>
         <div className={styles.formGroup}>
           <label htmlFor="name">Name:</label>

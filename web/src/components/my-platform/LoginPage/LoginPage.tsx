@@ -96,7 +96,7 @@ function LoginPage() {
 
           <div className={styles.loginFormFields}>
             <Input
-              label="EmailOrUsername"
+              label="Username"
               name="emailOrUsername"
               type="text"
               placeholder="Enter your username"
