@@ -5,9 +5,7 @@ import { Button } from "../../common/Button";
 import UserProfile from "../UserProfile/UserProfile";
 import styles from "./LoginPage.module.css";
 
-const SIGN_IN_URL =
-  import.meta.env.VITE_SIGN_IN_URL ||
-  "https://nest-local-oauth.onrender.com/api/auth/sign-in";
+const SIGN_IN_URL = import.meta.env.VITE_SIGN_IN_URL;
 
 function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
