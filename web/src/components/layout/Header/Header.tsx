@@ -34,7 +34,11 @@ function Header() {
           aria-expanded={isNavVisible}
           aria-label="Toggle navigation"
         >
-          <span className={styles.headerToggleIcon}></span>
+          <span
+            className={`${styles.headerToggleIcon} ${
+              isNavVisible ? styles.open : ""
+            }`}
+          ></span>
         </button>
 
         <div
