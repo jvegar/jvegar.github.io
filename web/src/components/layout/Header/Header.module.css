@@ -75,6 +75,26 @@
   top: -5px;
 }
 
+.headerToggleIcon,
+.headerToggleIcon:before,
+.headerToggleIcon:after {
+  transition: all 0.3s ease-in-out;
+}
+
+.headerToggleIcon.open {
+  background: transparent;
+}
+
+.headerToggleIcon.open:before {
+  transform: rotate(45deg);
+  top: 0;
+}
+
+.headerToggleIcon.open:after {
+  transform: rotate(-45deg);
+  top: 0;
+}
+
 .headerNavList {
   display: flex;
   list-style-type: none;
@@ -126,17 +146,21 @@
   }
 
   .headerNav {
-    display: none;
+    display: block;
     position: absolute;
     top: 100%;
     left: 0;
     width: 100%;
     background-color: #f8f9fa;
-    padding: 20px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+    padding: 0 20px;
   }
 
   .headerNav.show {
-    display: block;
+    max-height: 500px; /* Adjust this value based on your menu's maximum height */
+    padding: 20px;
   }
 
   .headerNavList {
