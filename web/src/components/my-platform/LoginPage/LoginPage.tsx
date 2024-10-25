@@ -2,7 +2,12 @@ import { useState } from "react";
 import { Alert } from "../../common/Alert";
 import { Input } from "../../common/Input";
 import { Button } from "../../common/Button";
+import UserProfile from "../UserProfile/UserProfile";
 import styles from "./LoginPage.module.css";
+
+const SIGN_IN_URL =
+  import.meta.env.VITE_SIGN_IN_URL ||
+  "https://nest-local-oauth.onrender.com/api/auth/sign-in";
 
 function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -15,6 +20,7 @@ function LoginPage() {
     emailOrUsername: "",
     password: "",
   });
+  const [userData, setUserData] = useState(null);
 
   const validateForm = () => {
     const errors = {
@@ -58,28 +64,35 @@ function LoginPage() {
     setIsLoading(true);
 
     try {
-      const response = await fetch(
-        "https://nest-local-oauth.onrender.com/api/auth/sign-in",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formData),
-        }
-      );
+      const response = await fetch(SIGN_IN_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
 
       if (!response.ok) {
         throw new Error("Authentication failed");
       }
 
       const data = await response.json();
-      console.log(data);
-      // Handle successful login (e.g., store token, redirect)
+      setUserData(data.user);
+      // Store the access token in localStorage or a secure storage method
+      localStorage.setItem("accessToken", data.accessToken);
     } catch (err) {
       setError((err as Error).message);
     } finally {
       setIsLoading(false);
     }
   };
+
+  const handleLogout = () => {
+    setUserData(null);
+    localStorage.removeItem("accessToken");
+  };
+
+  if (userData) {
+    return <UserProfile user={userData} onLogout={handleLogout} />;
+  }
 
   return (
     <div className={styles.login}>
