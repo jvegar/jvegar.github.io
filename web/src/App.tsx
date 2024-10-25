@@ -1,3 +1,4 @@
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Layout from "./components/layout/Layout";
 import Home from "./components/home/Home";
 import About from "./components/about/About";
@@ -9,19 +10,31 @@ import "./App.css";
 import { ScrollSpyProvider } from "./components/layout/Header/useScrollSpyContex";
 import MyPlatform from "./components/my-platform/MyPlatform";
 
+function MainContent() {
+  return (
+    <>
+      <Home />
+      <About />
+      <Resume />
+      <Services />
+      <Projects />
+      <Contact />
+    </>
+  );
+}
+
 function App() {
   return (
-    <ScrollSpyProvider>
-      <Layout>
-        <Home />
-        <About />
-        <Resume />
-        <Services />
-        <Projects />
-        <Contact />
-        <MyPlatform />
-      </Layout>
-    </ScrollSpyProvider>
+    <Router>
+      <ScrollSpyProvider>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<MainContent />} />
+            <Route path="/platform" element={<MyPlatform />} />
+          </Routes>
+        </Layout>
+      </ScrollSpyProvider>
+    </Router>
   );
 }
 

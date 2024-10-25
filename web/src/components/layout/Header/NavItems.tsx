@@ -1,5 +1,6 @@
 import styles from "./Header.module.css";
-import { Link } from "react-scroll";
+import { Link as RouterLink, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
 interface NavItemProps {
   href: string;
@@ -9,19 +10,32 @@ interface NavItemProps {
 }
 
 function NavItem({ href, text, isActive, onClick }: NavItemProps) {
+  const isPlatformLink = href === "#my-platform-section";
+  // const sectionId = href.split("#")[1];
+
   return (
     <li className={styles.headerNavItem}>
-      <Link
-        to={href.split("#")[1]}
-        className={`${styles.headerNavLink} ${
-          isActive ? styles.headerNavLinkActive : ""
-        }`}
-        smooth={true}
-        duration={500}
-        onClick={() => onClick(href)}
-      >
-        <span>{text}</span>
-      </Link>
+      {isPlatformLink ? (
+        <RouterLink
+          to="/platform"
+          className={`${styles.headerNavLink} ${
+            isActive ? styles.headerNavLinkActive : ""
+          }`}
+          onClick={() => onClick(href)}
+        >
+          <span>{text}</span>
+        </RouterLink>
+      ) : (
+        <RouterLink
+          to={{ pathname: "/", hash: href }}
+          className={`${styles.headerNavLink} ${
+            isActive ? styles.headerNavLinkActive : ""
+          }`}
+          onClick={() => onClick(href)}
+        >
+          <span>{text}</span>
+        </RouterLink>
+      )}
     </li>
   );
 }
@@ -32,6 +46,17 @@ interface NavItemsProps {
 }
 
 function NavItems({ activeLink, onLinkClick }: NavItemsProps) {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      const element = document.getElementById(location.hash.substring(1));
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [location]);
+
   const items = [
     { href: "#home-section", text: "Home" },
     { href: "#about-section", text: "About me" },

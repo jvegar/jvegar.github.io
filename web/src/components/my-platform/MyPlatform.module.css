@@ -3,12 +3,6 @@
   background-color: rgba(240, 240, 255, 0.8);
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
-}
-
 .sectionTitle {
   font-size: 2.5rem;
   font-weight: bold;

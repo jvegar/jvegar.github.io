@@ -24,7 +24,7 @@ function Header() {
       id="header"
     >
       <div className={styles.headerContainer}>
-        <a className={styles.headerBrand} href="index.html">
+        <a className={styles.headerBrand} href="/">
           <span className={styles.headerBrandHighlight}>J</span>ose Eduardo
         </a>
         <button
