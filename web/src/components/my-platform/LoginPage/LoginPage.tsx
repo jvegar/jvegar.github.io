@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Alert } from "../../common/Alert";
 import { Input } from "../../common/Input";
 import { Button } from "../../common/Button";
@@ -6,6 +6,7 @@ import UserProfile from "../UserProfile/UserProfile";
 import styles from "./LoginPage.module.css";
 
 const SIGN_IN_URL = import.meta.env.VITE_SIGN_IN_URL;
+const AUTH_ME_URL = import.meta.env.VITE_AUTH_ME_URL;
 
 function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -19,6 +20,37 @@ function LoginPage() {
     password: "",
   });
   const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    const checkExistingSession = async () => {
+      const token = localStorage.getItem("accessToken");
+      if (!token) return;
+
+      try {
+        setIsLoading(true);
+        const response = await fetch(AUTH_ME_URL, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error("Session expired");
+        }
+
+        const userData = await response.json();
+        setUserData(userData);
+      } catch (err) {
+        console.error((err as Error).message);
+        localStorage.removeItem("accessToken");
+        setError("Session expired. Please sign in again.");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    checkExistingSession();
+  }, []);
 
   const validateForm = () => {
     const errors = {
