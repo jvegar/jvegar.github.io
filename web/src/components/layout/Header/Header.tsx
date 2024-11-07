@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useScrollPosition } from "./useScrollPosition";
 import styles from "./Header.module.css";
 import NavItems from "./NavItems";
-import { useScrollSpyContext } from "./useScrollSpyContex";
+import { useScrollSpyContext } from "./scrollSpyContext";
 
 function Header() {
   const [isNavVisible, setIsNavVisible] = useState(false);

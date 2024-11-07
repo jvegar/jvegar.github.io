@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Alert } from "../../common/Alert";
 import { Input } from "../../common/Input";
 import { Button } from "../../common/Button";
@@ -9,6 +10,7 @@ const SIGN_IN_URL = import.meta.env.VITE_SIGN_IN_URL;
 const AUTH_ME_URL = import.meta.env.VITE_AUTH_ME_URL;
 
 function LoginPage() {
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [formData, setFormData] = useState({
@@ -181,7 +183,14 @@ function LoginPage() {
           {/* Sign Up Link */}
           <div className={styles.loginSignup}>
             Don't have an account?{" "}
-            <a href="/register" className={styles.loginSignupLink}>
+            <a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                navigate("/platform/signup");
+              }}
+              className={styles.loginSignupLink}
+            >
               Sign up
             </a>
           </div>

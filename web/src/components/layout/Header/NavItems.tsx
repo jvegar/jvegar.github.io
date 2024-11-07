@@ -49,7 +49,7 @@ function NavItems({ activeLink, onLinkClick }: NavItemsProps) {
   const location = useLocation();
 
   useEffect(() => {
-    if (location.hash) {
+    if (location.pathname === "/" && location.hash) {
       const element = document.getElementById(location.hash.substring(1));
       if (element) {
         element.scrollIntoView({ behavior: "smooth" });

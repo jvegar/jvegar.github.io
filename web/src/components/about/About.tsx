@@ -2,33 +2,14 @@ import styles from "./About.module.css";
 import aboutImage from "../../assets/about.jpg";
 import Stack from "./Stack/Stack";
 import { useEffect, useState } from "react";
-import { useScrollSpyContext } from "../layout/Header/useScrollSpyContex";
-// import useScrollSpy from "../layout/Header/useScrollSpy";
+import { useScrollSpyContext } from "../layout/Header/scrollSpyContext";
+
 function About() {
   const [counter, setCounter] = useState(0);
   const [isCounting, setIsCounting] = useState(false);
-  // const activeSection = useScrollSpy([
-  //   "home-section",
-  //   "about-section",
-  //   "resume-section",
-  //   "services-section",
-  //   "projects-section",
-  //   "contact-section",
-  // ]);
+
   const { activeSection } = useScrollSpyContext();
 
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     if (activeSection === "about-section") {
-  //       setIsCounting(true);
-  //     } else {
-  //       setIsCounting(false);
-  //     }
-  //   };
-
-  //   window.addEventListener("scroll", handleScroll);
-  //   return () => window.removeEventListener("scroll", handleScroll);
-  // }, [activeSection]);
   useEffect(() => {
     setCounter(0);
     setIsCounting(activeSection === "about-section");

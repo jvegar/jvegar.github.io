@@ -7,7 +7,7 @@ import Services from "./components/services/Services";
 import Projects from "./components/projects/Projects";
 import Contact from "./components/contact/Contact";
 import "./App.css";
-import { ScrollSpyProvider } from "./components/layout/Header/useScrollSpyContex";
+import { ScrollSpyProvider } from "./components/layout/Header/ScrollSpyProvider";
 import MyPlatform from "./components/my-platform/MyPlatform";
 
 function MainContent() {
@@ -30,7 +30,7 @@ function App() {
         <Layout>
           <Routes>
             <Route path="/" element={<MainContent />} />
-            <Route path="/platform" element={<MyPlatform />} />
+            <Route path="/platform/*" element={<MyPlatform />} />
           </Routes>
         </Layout>
       </ScrollSpyProvider>
