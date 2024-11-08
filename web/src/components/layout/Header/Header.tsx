@@ -16,6 +16,14 @@ function Header() {
 
   const handleLinkClick = () => {
     setIsNavVisible(false);
+    setTimeout(() => {
+      const headerHeight = document.getElementById("header")?.offsetHeight || 0;
+      const currentPosition = window.scrollY;
+      window.scrollTo({
+        top: currentPosition - headerHeight,
+        behavior: "smooth",
+      });
+    }, 500);
   };
 
   return (

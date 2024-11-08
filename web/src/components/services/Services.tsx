@@ -18,7 +18,7 @@ const services = [
 
 function Services() {
   return (
-    <div className={styles.servicesContainer} id="services-section">
+    <section className={styles.servicesContainer} id="services-section">
       <h1>Services</h1>
       <p>I offer different services.</p>
       <div className={styles.servicesGrid}>
@@ -26,7 +26,7 @@ function Services() {
           <ServiceCard key={index} icon={service.icon} title={service.title} />
         ))}
       </div>
-    </div>
+    </section>
   );
 }
 

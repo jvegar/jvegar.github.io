@@ -37,7 +37,7 @@ function Contact() {
   };
 
   return (
-    <div className={styles.contactContainer} id="contact-section">
+    <section className={styles.contactContainer} id="contact-section">
       <h1 className={styles.contactTitle}>Contact Me</h1>
       <form className={styles.contactForm} onSubmit={handleSubmit}>
         <Input
@@ -76,7 +76,7 @@ function Contact() {
           Send Message
         </Button>
       </form>
-    </div>
+    </section>
   );
 }
 
