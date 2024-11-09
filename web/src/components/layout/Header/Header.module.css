@@ -8,6 +8,10 @@
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+.headerPlatform {
+  position: static;
+}
+
 .headerContainer {
   display: flex;
   justify-content: space-between;

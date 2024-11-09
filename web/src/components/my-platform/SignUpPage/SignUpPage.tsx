@@ -52,7 +52,12 @@ function SignUpPage() {
   return (
     <div className={styles.signUp}>
       <div className={styles.signUpContainer}>
-        <h2>Sign Up</h2>
+        <div className={styles.signUpHeader}>
+          <h2 className={styles.signUpTitle}>Sign Up</h2>
+          <p className={styles.signUpSubtitle}>
+            Please sign up your new account
+          </p>
+        </div>
         <form onSubmit={handleSubmit}>
           <Input
             label="Name"

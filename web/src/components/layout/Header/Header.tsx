@@ -3,6 +3,7 @@ import { useScrollPosition } from "./useScrollPosition";
 import styles from "./Header.module.css";
 import NavItems from "./NavItems";
 import { useScrollSpyContext } from "./scrollSpyContext";
+import { useLocation, Link } from "react-router-dom";
 
 function Header() {
   const [isNavVisible, setIsNavVisible] = useState(false);
@@ -10,31 +11,39 @@ function Header() {
 
   const { activeSection } = useScrollSpyContext();
 
+  const location = useLocation();
+  const isPlatformRoute = location.pathname.startsWith("/platform");
+
   const toggleNav = () => {
     setIsNavVisible(!isNavVisible);
   };
 
   const handleLinkClick = () => {
     setIsNavVisible(false);
-    setTimeout(() => {
-      const headerHeight = document.getElementById("header")?.offsetHeight || 0;
-      const currentPosition = window.scrollY;
-      window.scrollTo({
-        top: currentPosition - headerHeight,
-        behavior: "smooth",
-      });
-    }, 500);
+    if (!isPlatformRoute) {
+      setTimeout(() => {
+        const headerHeight =
+          document.getElementById("header")?.offsetHeight || 0;
+        const currentPosition = window.scrollY;
+        window.scrollTo({
+          top: currentPosition - headerHeight,
+          behavior: "smooth",
+        });
+      }, 500);
+    }
   };
 
   return (
     <nav
-      className={`${styles.header} ${isScrolled ? styles.headerScrolled : ""}`}
+      className={`${styles.header} ${isScrolled ? styles.headerScrolled : ""} ${
+        isPlatformRoute ? styles.headerPlatform : ""
+      }`}
       id="header"
     >
       <div className={styles.headerContainer}>
-        <a className={styles.headerBrand} href="/">
+        <Link to="/" className={styles.headerBrand}>
           <span className={styles.headerBrandHighlight}>J</span>ose Eduardo
-        </a>
+        </Link>
         <button
           className={styles.headerToggle}
           type="button"

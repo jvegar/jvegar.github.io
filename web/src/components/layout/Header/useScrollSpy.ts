@@ -1,11 +1,18 @@
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 const useScrollSpy = (sectionIds: string[], offset: number = 100) => {
   const [activeSection, setActiveSection] = useState<string | undefined>(
     undefined
   );
+  const location = useLocation();
+  const isPlatformRoute = location.pathname.startsWith("/platform");
 
   useEffect(() => {
+    if (isPlatformRoute) {
+      return;
+    }
+
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
 
@@ -32,9 +39,9 @@ const useScrollSpy = (sectionIds: string[], offset: number = 100) => {
     handleScroll();
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [sectionIds, offset]);
+  }, [sectionIds, offset, isPlatformRoute]);
 
-  return activeSection;
+  return isPlatformRoute ? undefined : activeSection;
 };
 
 export default useScrollSpy;
