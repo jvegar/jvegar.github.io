@@ -3,6 +3,7 @@ import aboutImage from "../../assets/about.jpg";
 import Stack from "./Stack/Stack";
 import { useEffect, useState } from "react";
 import { useScrollSpyContext } from "../layout/Header/scrollSpyContext";
+import aboutData from "../../data/about.json";
 
 function About() {
   const [counter, setCounter] = useState(0);
@@ -26,7 +27,7 @@ function About() {
   }, [isCounting]);
 
   useEffect(() => {
-    if (counter >= 20) {
+    if (counter >= aboutData.projectsCount) {
       setIsCounting(false);
     }
   }, [counter]);
@@ -46,21 +47,26 @@ function About() {
               <div className={styles.aboutHeading}>
                 <h2 className={styles.aboutHeadingMedium}>About me</h2>
                 <p className={styles.aboutDescription}>
-                  IT professional with more than 10 years of experience in Web
-                  Development, Cloud Infrastructure, Financial Advisory.
+                  {aboutData.description}
                 </p>
                 <ul className={styles.aboutInfoList}>
                   <li className={styles.aboutInfoItem}>
                     <span className={styles.aboutInfoLabel}>Name:</span>
-                    <span className={styles.aboutInfoValue}>Jose Vega</span>
+                    <span className={styles.aboutInfoValue}>
+                      {aboutData.personalInfo.name}
+                    </span>
                   </li>
                   <li className={styles.aboutInfoItem}>
                     <span className={styles.aboutInfoLabel}>Email:</span>
-                    <span className={styles.aboutInfoValue}>jvegar@uni.pe</span>
+                    <span className={styles.aboutInfoValue}>
+                      {aboutData.personalInfo.email}
+                    </span>
                   </li>
                   <li className={styles.aboutInfoItem}>
                     <span className={styles.aboutInfoLabel}>Phone: </span>
-                    <span className={styles.aboutInfoValue}>+51-991139451</span>
+                    <span className={styles.aboutInfoValue}>
+                      {aboutData.personalInfo.phone}
+                    </span>
                   </li>
                 </ul>
               </div>

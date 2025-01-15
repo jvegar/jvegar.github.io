@@ -1,21 +1,21 @@
 .alert {
-  padding: 1rem;
-  border-radius: 0.5rem;
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius-md);
   border-width: 1px;
-  font-size: 0.875rem;
+  font-size: var(--font-size-sm);
   display: flex;
   align-items: flex-start;
 }
 
 .alertError {
   background-color: #fef2f2;
-  color: #b91c1c;
+  color: var(--color-error);
   border-color: #fecaca;
 }
 
 .alertSuccess {
   background-color: #f0fdf4;
-  color: #15803d;
+  color: var(--color-success);
   border-color: #bbf7d0;
 }
 

@@ -41,6 +41,17 @@
   gap: 1.5rem;
 }
 
+.signupLogin {
+  text-align: center;
+  font-size: 0.875rem;
+  color: #4b5563;
+}
+
+.signupLoginLink {
+  font-weight: 500;
+  color: #2563eb;
+}
+
 /* If you want to add responsive design */
 @media (max-width: 480px) {
   .signUpContainer {
