@@ -1,47 +1,56 @@
+import NodeIcon from "../assets/img/stack/icon-nodejs.svg";
+import JavaScriptIcon from "../assets/img/stack/icon-javascript.svg";
+import TypeScriptIcon from "../assets/img/stack/icon-typescript.svg";
+import ReactIcon from "../assets/img/stack/icon-react.svg";
+import PostgreSQLIcon from "../assets/img/stack/icon-postgres.svg";
+import AWSIcon from "../assets/img/stack/icon-aws.svg";
+import DockerIcon from "../assets/img/stack/icon-docker.svg";
+import JavaIcon from "../assets/img/stack/icon-java.svg";
+
 export interface StackItem {
-  iconUrl: string;
   name: string;
-  url?: string;
+  url: string;
+  icon: string;
 }
 
 export const stackData: StackItem[] = [
   {
-    iconUrl: "/src/assets/img/stack/icon-nodejs.svg",
+    icon: NodeIcon,
     name: "Node.js",
     url: "https://nodejs.org/",
   },
   {
-    iconUrl: "/src/assets/img/stack/icon-javascript.svg",
+    icon: JavaScriptIcon,
     name: "JavaScript",
     url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
   },
   {
-    iconUrl: "/src/assets/img/stack/icon-typescript.svg",
+    icon: TypeScriptIcon,
     name: "TypeScript",
     url: "https://www.typescriptlang.org/",
   },
   {
-    iconUrl: "/src/assets/img/stack/icon-react.svg",
+    icon: ReactIcon,
     name: "React",
     url: "https://reactjs.org/",
   },
   {
-    iconUrl: "/src/assets/img/stack/icon-postgres.svg",
+    icon: PostgreSQLIcon,
     name: "PostgreSQL",
     url: "https://www.postgresql.org/",
   },
   {
-    iconUrl: "/src/assets/img/stack/icon-aws.svg",
+    icon: AWSIcon,
     name: "AWS",
     url: "https://aws.amazon.com/",
   },
   {
-    iconUrl: "/src/assets/img/stack/icon-docker.svg",
+    icon: DockerIcon,
     name: "Docker",
     url: "https://www.docker.com/",
   },
   {
-    iconUrl: "/src/assets/img/stack/icon-java.svg",
+    icon: JavaIcon,
     name: "Java",
     url: "https://www.java.com/",
   },

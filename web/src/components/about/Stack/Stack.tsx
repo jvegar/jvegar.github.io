@@ -15,7 +15,7 @@ function Stack() {
                 rel="noopener noreferrer"
               >
                 <img
-                  src={item.iconUrl}
+                  src={item.icon}
                   className={styles.stackSectionImage}
                   alt={item.name}
                 />

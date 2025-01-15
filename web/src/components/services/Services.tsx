@@ -11,7 +11,7 @@ function Services() {
         {servicesData.map((service) => (
           <ServiceCard
             key={service.title}
-            icon={service.iconUrl}
+            icon={service.icon}
             title={service.title}
           />
         ))}

@@ -1,31 +1,38 @@
+import WebDesignIcon from "../assets/icon-web-design.svg";
+import WebDevelopmentIcon from "../assets/icon-web-development.svg";
+import FinancialAdvisoryIcon from "../assets/icon-financial-advisory.svg";
+import AppDevelopmentIcon from "../assets/icon-app-development.svg";
+import BrandingIcon from "../assets/icon-branding.svg";
+import ProcessAutomationIcon from "../assets/icon-process-automation.svg";
+
 export interface ServiceItem {
-  iconUrl: string;
+  icon: string;
   title: string;
 }
 
 export const servicesData: ServiceItem[] = [
   {
-    iconUrl: "/src/assets/icon-web-design.svg",
+    icon: WebDesignIcon,
     title: "WEB DESIGN",
   },
   {
-    iconUrl: "/src/assets/icon-web-development.svg",
+    icon: WebDevelopmentIcon,
     title: "WEB DEVELOPMENT",
   },
   {
-    iconUrl: "/src/assets/icon-financial-advisory.svg",
+    icon: FinancialAdvisoryIcon,
     title: "FINANCIAL ADVISORY",
   },
   {
-    iconUrl: "/src/assets/icon-app-development.svg",
+    icon: AppDevelopmentIcon,
     title: "APP DEVELOPMENT",
   },
   {
-    iconUrl: "/src/assets/icon-branding.svg",
+    icon: BrandingIcon,
     title: "BRANDING",
   },
   {
-    iconUrl: "/src/assets/icon-process-automation.svg",
+    icon: ProcessAutomationIcon,
     title: "PROCESS AUTOMATION",
   },
 ];
