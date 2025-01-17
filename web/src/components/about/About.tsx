@@ -3,11 +3,19 @@ import aboutImage from "../../assets/about.jpg";
 import Stack from "./Stack/Stack";
 import { useEffect, useState } from "react";
 import { useScrollSpyContext } from "../layout/Header/scrollSpyContext";
-import aboutData from "../../data/about.json";
+
+interface AboutData {
+  name: string;
+  email: string;
+  phone: string;
+  description: string;
+  projectsCount: number;
+}
 
 function About() {
   const [counter, setCounter] = useState(0);
   const [isCounting, setIsCounting] = useState(false);
+  const [aboutData, setAboutData] = useState<AboutData | null>(null);
 
   const { activeSection } = useScrollSpyContext();
 
@@ -27,10 +35,26 @@ function About() {
   }, [isCounting]);
 
   useEffect(() => {
-    if (counter >= aboutData.projectsCount) {
+    if (aboutData && counter >= aboutData.projectsCount) {
       setIsCounting(false);
     }
-  }, [counter]);
+  }, [counter, aboutData]);
+
+  useEffect(() => {
+    const fetchAboutData = async () => {
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_MY_PLATFORM_API_URL}/api/personal-info/1`
+        );
+        const data = await response.json();
+        setAboutData(data);
+      } catch (error) {
+        console.error("Error fetching about data:", error);
+      }
+    };
+
+    fetchAboutData();
+  }, []);
 
   return (
     <section className={styles.about} id="about-section">
@@ -47,25 +71,25 @@ function About() {
               <div className={styles.aboutHeading}>
                 <h2 className={styles.aboutHeadingMedium}>About me</h2>
                 <p className={styles.aboutDescription}>
-                  {aboutData.description}
+                  {aboutData ? aboutData.description : "Loading..."}
                 </p>
                 <ul className={styles.aboutInfoList}>
                   <li className={styles.aboutInfoItem}>
                     <span className={styles.aboutInfoLabel}>Name:</span>
                     <span className={styles.aboutInfoValue}>
-                      {aboutData.personalInfo.name}
+                      {aboutData ? aboutData.name : "Loading..."}
                     </span>
                   </li>
                   <li className={styles.aboutInfoItem}>
                     <span className={styles.aboutInfoLabel}>Email:</span>
                     <span className={styles.aboutInfoValue}>
-                      {aboutData.personalInfo.email}
+                      {aboutData ? aboutData.email : "Loading..."}
                     </span>
                   </li>
                   <li className={styles.aboutInfoItem}>
                     <span className={styles.aboutInfoLabel}>Phone: </span>
                     <span className={styles.aboutInfoValue}>
-                      {aboutData.personalInfo.phone}
+                      {aboutData ? aboutData.phone : "Loading..."}
                     </span>
                   </li>
                 </ul>
