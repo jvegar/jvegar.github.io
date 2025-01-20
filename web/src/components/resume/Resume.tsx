@@ -1,16 +1,42 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Resume.module.css";
 import educationIcon from "../../assets/icon-education.svg";
-import experienceIcon from "../../assets/icon-experience.svg";
-import {
-  educationData,
-  experienceData,
-  skillsData,
-  additionalSkills,
-} from "../../data/resume";
+// import experienceIcon from "../../assets/icon-experience.svg";
+import { skillsData, additionalSkills } from "../../data/resume";
+
+interface EducationItem {
+  id: number;
+  dateRange: string;
+  title: string;
+  subtitle: string;
+}
 
 function Resume() {
   const [activeSection, setActiveSection] = useState("Education");
+  const [educationData, setEducationData] = useState<EducationItem[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    const fetchEducationData = async () => {
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_MY_PLATFORM_API_URL}/api/education`
+        );
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const data = await response.json();
+        setEducationData(data);
+      } catch (error) {
+        setError(`Failed to fetch education data: ${(error as Error).message}`);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchEducationData();
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -48,6 +74,14 @@ function Resume() {
   };
 
   const renderContent = () => {
+    if (loading) {
+      return <p>Loading...</p>;
+    }
+
+    if (error) {
+      return <p>{error}</p>;
+    }
+
     return (
       <>
         <div
@@ -55,8 +89,8 @@ function Resume() {
           className={`${styles.resumePage} ${styles.resumePageEducation}`}
         >
           <h2 className={styles.resumeHeading}>Education</h2>
-          {educationData.map((item, index) => (
-            <React.Fragment key={index}>
+          {educationData.map((item) => (
+            <React.Fragment key={item.id}>
               <div
                 className={`${styles.resumeItem} ${styles.resumeItemEducation}`}
               >
@@ -73,16 +107,16 @@ function Resume() {
                   </span>
                 </div>
                 <div className={styles.resumeItemContent}>
-                  <span className={styles.resumeItemDate}>{item.date}</span>
+                  <span className={styles.resumeItemDate}>
+                    {item.dateRange}
+                  </span>
                   <h2 className={styles.resumeItemTitle}>{item.title}</h2>
                   <span className={styles.resumeItemSubtitle}>
                     {item.subtitle}
                   </span>
                 </div>
               </div>
-              {index < educationData.length - 1 && (
-                <hr className={styles.resumeSeparator} />
-              )}
+              <hr className={styles.resumeSeparator} />
             </React.Fragment>
           ))}
         </div>
@@ -91,38 +125,7 @@ function Resume() {
           className={`${styles.resumePage} ${styles.resumePageExperience}`}
         >
           <h2 className={styles.resumeHeading}>Experience</h2>
-          {experienceData.map((item, index) => (
-            <React.Fragment key={index}>
-              <div
-                className={`${styles.resumeItem} ${styles.resumeItemExperience}`}
-              >
-                <div className={styles.resumeItemIcon}>
-                  <span
-                    className={`${styles.resumeIcon} ${styles.resumeIconBriefcase}`}
-                  >
-                    <img
-                      src={experienceIcon}
-                      alt="Experience"
-                      width={32}
-                      height={32}
-                    />
-                  </span>
-                </div>
-                <div className={styles.resumeItemContent}>
-                  <span className={styles.resumeItemDate}>{item.date}</span>
-                  <h2 className={styles.resumeItemTitle}>{item.title}</h2>
-                  {item.company && (
-                    <span className={styles.resumeItemSubtitle}>
-                      {item.company}
-                    </span>
-                  )}
-                </div>
-              </div>
-              {index < experienceData.length - 1 && (
-                <hr className={styles.resumeSeparator} />
-              )}
-            </React.Fragment>
-          ))}
+          {/* Add experience data rendering logic here */}
         </div>
         <div
           id="page-skills"
