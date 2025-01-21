@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import LoginPage from "./LoginPage/LoginPage";
 import SignupPage from "./SignupPage/SignupPage";
+import EditData from "./EditData/EditData";
 import styles from "./MyPlatform.module.css";
 
 function MyPlatform() {
@@ -10,6 +11,7 @@ function MyPlatform() {
         <Routes>
           <Route path="/" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
+          <Route path="/edit" element={<EditData />} />
         </Routes>
       </div>
     </section>
