@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Resume.module.css";
 import educationIcon from "../../assets/icon-education.svg";
-// import experienceIcon from "../../assets/icon-experience.svg";
+import experienceIcon from "../../assets/icon-experience.svg";
 import { skillsData, additionalSkills } from "../../data/resume";
 
 interface EducationItem {
@@ -10,10 +10,17 @@ interface EducationItem {
   title: string;
   subtitle: string;
 }
+interface ExperienceItem {
+  id: number;
+  dateRange: string;
+  title: string;
+  company: string;
+}
 
 function Resume() {
   const [activeSection, setActiveSection] = useState("Education");
   const [educationData, setEducationData] = useState<EducationItem[]>([]);
+  const [experienceData, setExperienceData] = useState<ExperienceItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -35,7 +42,27 @@ function Resume() {
       }
     };
 
+    const fetchExperienceData = async () => {
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_MY_PLATFORM_API_URL}/api/experience`
+        );
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const data = await response.json();
+        setExperienceData(data);
+      } catch (error) {
+        setError(
+          `Failed to fetch experience data: ${(error as Error).message}`
+        );
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchEducationData();
+    fetchExperienceData();
   }, []);
 
   useEffect(() => {
@@ -125,7 +152,36 @@ function Resume() {
           className={`${styles.resumePage} ${styles.resumePageExperience}`}
         >
           <h2 className={styles.resumeHeading}>Experience</h2>
-          {/* Add experience data rendering logic here */}
+          {experienceData.map((item) => (
+            <React.Fragment key={item.id}>
+              <div
+                className={`${styles.resumeItem} ${styles.resumeItemEducation}`}
+              >
+                <div className={styles.resumeItemIcon}>
+                  <span
+                    className={`${styles.resumeIcon} ${styles.resumeIconIdeas}`}
+                  >
+                    <img
+                      src={experienceIcon}
+                      alt="Experience"
+                      width={40}
+                      height={40}
+                    />
+                  </span>
+                </div>
+                <div className={styles.resumeItemContent}>
+                  <span className={styles.resumeItemDate}>
+                    {item.dateRange}
+                  </span>
+                  <h2 className={styles.resumeItemTitle}>{item.title}</h2>
+                  <span className={styles.resumeItemSubtitle}>
+                    {item.company}
+                  </span>
+                </div>
+              </div>
+              <hr className={styles.resumeSeparator} />
+            </React.Fragment>
+          ))}
         </div>
         <div
           id="page-skills"
