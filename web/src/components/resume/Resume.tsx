@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./Resume.module.css";
 import educationIcon from "../../assets/icon-education.svg";
 import experienceIcon from "../../assets/icon-experience.svg";
-import { skillsData, additionalSkills } from "../../data/resume";
+// import { skillsData, additionalSkills } from "../../data/resume";
 
 interface EducationItem {
   id: number;
@@ -16,11 +16,20 @@ interface ExperienceItem {
   title: string;
   company: string;
 }
+interface SkillItem {
+  id: number;
+  name: string;
+  percentage: number;
+  lastWeek: number;
+  lastMonth: number;
+  isMainSkill: boolean;
+}
 
 function Resume() {
   const [activeSection, setActiveSection] = useState("Education");
   const [educationData, setEducationData] = useState<EducationItem[]>([]);
   const [experienceData, setExperienceData] = useState<ExperienceItem[]>([]);
+  const [skillsData, setSkillsData] = useState<SkillItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -61,8 +70,26 @@ function Resume() {
       }
     };
 
+    const fetchSkillsData = async () => {
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_MY_PLATFORM_API_URL}/api/skills`
+        );
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const data = await response.json();
+        setSkillsData(data);
+      } catch (error) {
+        setError(`Failed to fetch skills data: ${(error as Error).message}`);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchEducationData();
     fetchExperienceData();
+    fetchSkillsData();
   }, []);
 
   useEffect(() => {
@@ -189,72 +216,76 @@ function Resume() {
         >
           <h2 className={styles.resumeHeading}>Skills</h2>
           <div className={styles.resumeSkillsGrid}>
-            {skillsData.map((skill, index) => (
-              <div key={index} className={styles.resumeSkillCard}>
-                <h3>{skill.name}</h3>
-                <div className={styles.resumeSkillCircle}>
-                  <svg
-                    viewBox="0 0 36 36"
-                    className={styles.resumeSkillCircleSvg}
-                  >
-                    <path
-                      className={styles.resumeSkillCircleBg}
-                      d="M18 2.0845
-                        a 15.9155 15.9155 0 0 1 0 31.831
-                        a 15.9155 15.9155 0 0 1 0 -31.831"
-                    />
-                    <path
-                      className={styles.resumeSkillCircleProgress}
-                      strokeDasharray={`${skill.percentage}, 100`}
-                      d="M18 2.0845
-                        a 15.9155 15.9155 0 0 1 0 31.831
-                        a 15.9155 15.9155 0 0 1 0 -31.831"
-                    />
-                    <text
-                      x="18"
-                      y="20.35"
-                      className={styles.resumeSkillPercentage}
+            {skillsData
+              .filter((skill) => skill.isMainSkill)
+              .map((skill, index) => (
+                <div key={index} className={styles.resumeSkillCard}>
+                  <h3>{skill.name}</h3>
+                  <div className={styles.resumeSkillCircle}>
+                    <svg
+                      viewBox="0 0 36 36"
+                      className={styles.resumeSkillCircleSvg}
                     >
-                      {skill.percentage}%
-                    </text>
-                  </svg>
-                </div>
-                <div className={styles.resumeSkillStats}>
-                  <div className={styles.resumeSkillStat}>
-                    <span className={styles.resumeSkillStatValue}>
-                      {skill.lastWeek}%
-                    </span>
-                    <span className={styles.resumeSkillStatLabel}>
-                      Last week
-                    </span>
+                      <path
+                        className={styles.resumeSkillCircleBg}
+                        d="M18 2.0845
+                        a 15.9155 15.9155 0 0 1 0 31.831
+                        a 15.9155 15.9155 0 0 1 0 -31.831"
+                      />
+                      <path
+                        className={styles.resumeSkillCircleProgress}
+                        strokeDasharray={`${skill.percentage}, 100`}
+                        d="M18 2.0845
+                        a 15.9155 15.9155 0 0 1 0 31.831
+                        a 15.9155 15.9155 0 0 1 0 -31.831"
+                      />
+                      <text
+                        x="18"
+                        y="20.35"
+                        className={styles.resumeSkillPercentage}
+                      >
+                        {skill.percentage}%
+                      </text>
+                    </svg>
                   </div>
-                  <div className={styles.resumeSkillStat}>
-                    <span className={styles.resumeSkillStatValue}>
-                      {skill.lastMonth}%
-                    </span>
-                    <span className={styles.resumeSkillStatLabel}>
-                      Last month
-                    </span>
+                  <div className={styles.resumeSkillStats}>
+                    <div className={styles.resumeSkillStat}>
+                      <span className={styles.resumeSkillStatValue}>
+                        {skill.lastWeek}%
+                      </span>
+                      <span className={styles.resumeSkillStatLabel}>
+                        Last week
+                      </span>
+                    </div>
+                    <div className={styles.resumeSkillStat}>
+                      <span className={styles.resumeSkillStatValue}>
+                        {skill.lastMonth}%
+                      </span>
+                      <span className={styles.resumeSkillStatLabel}>
+                        Last month
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
           </div>
           <div className={styles.resumeAdditionalSkills}>
-            {additionalSkills.map((skill, index) => (
-              <div key={index} className={styles.resumeSkillBar}>
-                <div className={styles.resumeSkillBarInfo}>
-                  <span>{skill.name}</span>
-                  <span>{skill.percentage}%</span>
+            {skillsData
+              .filter((skill) => !skill.isMainSkill)
+              .map((skill, index) => (
+                <div key={index} className={styles.resumeSkillBar}>
+                  <div className={styles.resumeSkillBarInfo}>
+                    <span>{skill.name}</span>
+                    <span>{skill.percentage}%</span>
+                  </div>
+                  <div className={styles.resumeSkillBarBg}>
+                    <div
+                      className={styles.resumeSkillBarProgress}
+                      style={{ width: `${skill.percentage}%` }}
+                    ></div>
+                  </div>
                 </div>
-                <div className={styles.resumeSkillBarBg}>
-                  <div
-                    className={styles.resumeSkillBarProgress}
-                    style={{ width: `${skill.percentage}%` }}
-                  ></div>
-                </div>
-              </div>
-            ))}
+              ))}
           </div>
         </div>
       </>
