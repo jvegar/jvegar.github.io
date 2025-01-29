@@ -9,17 +9,20 @@ import Contact from "./components/contact/Contact";
 import "./App.css";
 import { ScrollSpyProvider } from "./components/layout/Header/ScrollSpyProvider";
 import MyPlatform from "./components/my-platform/MyPlatform";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 function MainContent() {
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
       <Home />
       <About />
       <Resume />
       <Services />
       <Projects />
       <Contact />
-    </>
+    </QueryClientProvider>
   );
 }
 

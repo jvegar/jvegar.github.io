@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./Resume.module.css";
 import educationIcon from "../../assets/icon-education.svg";
 import experienceIcon from "../../assets/icon-experience.svg";
-// import { skillsData, additionalSkills } from "../../data/resume";
+import { useQuery } from "@tanstack/react-query";
 
 interface EducationItem {
   id: number;
@@ -27,70 +27,63 @@ interface SkillItem {
 
 function Resume() {
   const [activeSection, setActiveSection] = useState("Education");
-  const [educationData, setEducationData] = useState<EducationItem[]>([]);
-  const [experienceData, setExperienceData] = useState<ExperienceItem[]>([]);
-  const [skillsData, setSkillsData] = useState<SkillItem[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
 
-  useEffect(() => {
-    const fetchEducationData = async () => {
-      try {
-        const response = await fetch(
-          `${import.meta.env.VITE_MY_PLATFORM_API_URL}/api/education`
-        );
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const data = await response.json();
-        setEducationData(data);
-      } catch (error) {
-        setError(`Failed to fetch education data: ${(error as Error).message}`);
-      } finally {
-        setLoading(false);
-      }
-    };
+  const fetchEducationData = async () => {
+    const response = await fetch(
+      `${import.meta.env.VITE_MY_PLATFORM_API_URL}/api/education`
+    );
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    return response.json();
+  };
 
-    const fetchExperienceData = async () => {
-      try {
-        const response = await fetch(
-          `${import.meta.env.VITE_MY_PLATFORM_API_URL}/api/experience`
-        );
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const data = await response.json();
-        setExperienceData(data);
-      } catch (error) {
-        setError(
-          `Failed to fetch experience data: ${(error as Error).message}`
-        );
-      } finally {
-        setLoading(false);
-      }
-    };
+  const fetchExperienceData = async () => {
+    const response = await fetch(
+      `${import.meta.env.VITE_MY_PLATFORM_API_URL}/api/experience`
+    );
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    return response.json();
+  };
 
-    const fetchSkillsData = async () => {
-      try {
-        const response = await fetch(
-          `${import.meta.env.VITE_MY_PLATFORM_API_URL}/api/skills`
-        );
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const data = await response.json();
-        setSkillsData(data);
-      } catch (error) {
-        setError(`Failed to fetch skills data: ${(error as Error).message}`);
-      } finally {
-        setLoading(false);
-      }
-    };
+  const fetchSkillsData = async () => {
+    const response = await fetch(
+      `${import.meta.env.VITE_MY_PLATFORM_API_URL}/api/skills`
+    );
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    return response.json();
+  };
 
-    fetchEducationData();
-    fetchExperienceData();
-    fetchSkillsData();
-  }, []);
+  const {
+    data: educationData = [],
+    error: educationError,
+    isLoading: isLoadingEducation,
+  } = useQuery<EducationItem[]>({
+    queryKey: ["education"],
+    queryFn: fetchEducationData,
+  });
+
+  const {
+    data: experienceData = [],
+    error: experienceError,
+    isLoading: isLoadingExperience,
+  } = useQuery<ExperienceItem[]>({
+    queryKey: ["experience"],
+    queryFn: fetchExperienceData,
+  });
+
+  const {
+    data: skillsData = [],
+    error: skillsError,
+    isLoading: isLoadingSkills,
+  } = useQuery<SkillItem[]>({ queryKey: ["skills"], queryFn: fetchSkillsData });
+
+  const error = educationError || experienceError || skillsError;
+  const loading = isLoadingEducation || isLoadingExperience || isLoadingSkills;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -133,7 +126,7 @@ function Resume() {
     }
 
     if (error) {
-      return <p>{error}</p>;
+      return <p>{(error as Error).message}</p>;
     }
 
     return (

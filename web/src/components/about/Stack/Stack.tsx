@@ -1,6 +1,7 @@
 import { getImageURL } from "../../../utils/image-util";
 import styles from "./Stack.module.css";
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 
 interface StackItem {
   id: number;
@@ -11,23 +12,26 @@ interface StackItem {
 }
 
 function Stack() {
-  const [stackData, setStackData] = useState<StackItem[]>([]);
+  const fetchStackData = async () => {
+    const response = await fetch(
+      `${import.meta.env.VITE_MY_PLATFORM_API_URL}/api/tech-stack`
+    );
+    return await response.json();
+  };
 
-  useEffect(() => {
-    const fetchStackData = async () => {
-      try {
-        const response = await fetch(
-          `${import.meta.env.VITE_MY_PLATFORM_API_URL}/api/tech-stack`
-        );
-        const data = await response.json();
-        setStackData(data);
-      } catch (error) {
-        console.error("Error fetching stack data:", error);
-      }
-    };
+  const {
+    isPending,
+    error,
+    data: stackData,
+  } = useQuery<StackItem[]>({
+    queryKey: ["stackData"],
+    queryFn: fetchStackData,
+  });
 
-    fetchStackData();
-  }, []);
+  if (isPending) return "Loading...";
+
+  if (error) return "An error has occurred: " + error.message;
+
   return (
     <section className={styles.stackSection} id="stack-section">
       <div className={styles.stackSectionContainer}>
