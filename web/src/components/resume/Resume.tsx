@@ -2,88 +2,16 @@ import React, { useState, useEffect } from "react";
 import styles from "./Resume.module.css";
 import educationIcon from "../../assets/icon-education.svg";
 import experienceIcon from "../../assets/icon-experience.svg";
-import { useQuery } from "@tanstack/react-query";
-
-interface EducationItem {
-  id: number;
-  dateRange: string;
-  title: string;
-  subtitle: string;
-}
-interface ExperienceItem {
-  id: number;
-  dateRange: string;
-  title: string;
-  company: string;
-}
-interface SkillItem {
-  id: number;
-  name: string;
-  percentage: number;
-  lastWeek: number;
-  lastMonth: number;
-  isMainSkill: boolean;
-}
+import { useData } from "../../context/useData";
 
 function Resume() {
+  const { data, isLoading, error } = useData();
   const [activeSection, setActiveSection] = useState("Education");
-
-  const fetchEducationData = async () => {
-    const response = await fetch(
-      `${import.meta.env.VITE_MY_PLATFORM_API_URL}/api/education`
-    );
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
-    }
-    return response.json();
-  };
-
-  const fetchExperienceData = async () => {
-    const response = await fetch(
-      `${import.meta.env.VITE_MY_PLATFORM_API_URL}/api/experience`
-    );
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
-    }
-    return response.json();
-  };
-
-  const fetchSkillsData = async () => {
-    const response = await fetch(
-      `${import.meta.env.VITE_MY_PLATFORM_API_URL}/api/skills`
-    );
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
-    }
-    return response.json();
-  };
-
   const {
-    data: educationData = [],
-    error: educationError,
-    isLoading: isLoadingEducation,
-  } = useQuery<EducationItem[]>({
-    queryKey: ["education"],
-    queryFn: fetchEducationData,
-  });
-
-  const {
-    data: experienceData = [],
-    error: experienceError,
-    isLoading: isLoadingExperience,
-  } = useQuery<ExperienceItem[]>({
-    queryKey: ["experience"],
-    queryFn: fetchExperienceData,
-  });
-
-  const {
-    data: skillsData = [],
-    error: skillsError,
-    isLoading: isLoadingSkills,
-  } = useQuery<SkillItem[]>({ queryKey: ["skills"], queryFn: fetchSkillsData });
-
-  const error = educationError || experienceError || skillsError;
-  const loading = isLoadingEducation || isLoadingExperience || isLoadingSkills;
+    education: educationData,
+    experience: experienceData,
+    skills: skillsData,
+  } = data || {};
 
   useEffect(() => {
     const handleScroll = () => {
@@ -121,7 +49,7 @@ function Resume() {
   };
 
   const renderContent = () => {
-    if (loading) {
+    if (isLoading) {
       return <p>Loading...</p>;
     }
 
@@ -136,7 +64,7 @@ function Resume() {
           className={`${styles.resumePage} ${styles.resumePageEducation}`}
         >
           <h2 className={styles.resumeHeading}>Education</h2>
-          {educationData.map((item) => (
+          {educationData?.map((item) => (
             <React.Fragment key={item.id}>
               <div
                 className={`${styles.resumeItem} ${styles.resumeItemEducation}`}
@@ -172,7 +100,7 @@ function Resume() {
           className={`${styles.resumePage} ${styles.resumePageExperience}`}
         >
           <h2 className={styles.resumeHeading}>Experience</h2>
-          {experienceData.map((item) => (
+          {experienceData?.map((item) => (
             <React.Fragment key={item.id}>
               <div
                 className={`${styles.resumeItem} ${styles.resumeItemEducation}`}
@@ -210,7 +138,7 @@ function Resume() {
           <h2 className={styles.resumeHeading}>Skills</h2>
           <div className={styles.resumeSkillsGrid}>
             {skillsData
-              .filter((skill) => skill.isMainSkill)
+              ?.filter((skill) => skill.isMainSkill)
               .map((skill, index) => (
                 <div key={index} className={styles.resumeSkillCard}>
                   <h3>{skill.name}</h3>
@@ -264,7 +192,7 @@ function Resume() {
           </div>
           <div className={styles.resumeAdditionalSkills}>
             {skillsData
-              .filter((skill) => !skill.isMainSkill)
+              ?.filter((skill) => !skill.isMainSkill)
               .map((skill, index) => (
                 <div key={index} className={styles.resumeSkillBar}>
                   <div className={styles.resumeSkillBarInfo}>

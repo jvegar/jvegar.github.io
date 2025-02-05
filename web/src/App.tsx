@@ -10,19 +10,20 @@ import "./App.css";
 import { ScrollSpyProvider } from "./components/layout/Header/ScrollSpyProvider";
 import MyPlatform from "./components/my-platform/MyPlatform";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { DataProvider } from "./context/DataContext";
 
 const queryClient = new QueryClient();
 
 function MainContent() {
   return (
-    <QueryClientProvider client={queryClient}>
+    <>
       <Home />
       <About />
       <Resume />
       <Services />
       <Projects />
       <Contact />
-    </QueryClientProvider>
+    </>
   );
 }
 
@@ -30,12 +31,16 @@ function App() {
   return (
     <Router>
       <ScrollSpyProvider>
-        <Layout>
-          <Routes>
-            <Route path="/" element={<MainContent />} />
-            <Route path="/platform/*" element={<MyPlatform />} />
-          </Routes>
-        </Layout>
+        <QueryClientProvider client={queryClient}>
+          <DataProvider>
+            <Layout>
+              <Routes>
+                <Route path="/" element={<MainContent />} />
+                <Route path="/platform/*" element={<MyPlatform />} />
+              </Routes>
+            </Layout>
+          </DataProvider>
+        </QueryClientProvider>
       </ScrollSpyProvider>
     </Router>
   );

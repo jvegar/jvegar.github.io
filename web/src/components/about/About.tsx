@@ -3,36 +3,15 @@ import aboutImage from "../../assets/about.jpg";
 import Stack from "./Stack/Stack";
 import { useEffect, useState } from "react";
 import { useScrollSpyContext } from "../layout/Header/scrollSpyContext";
-import { useQuery } from "@tanstack/react-query";
-
-interface AboutData {
-  name: string;
-  email: string;
-  phone: string;
-  description: string;
-  projectsCount: number;
-}
+import { useData } from "../../context/useData";
 
 function About() {
   const [counter, setCounter] = useState(0);
   const [isCounting, setIsCounting] = useState(false);
   const { activeSection } = useScrollSpyContext();
 
-  const fetchAboutData = async () => {
-    const response = await fetch(
-      `${import.meta.env.VITE_MY_PLATFORM_API_URL}/api/personal-info/1`
-    );
-    return await response.json();
-  };
-
-  const {
-    isPending,
-    error,
-    data: aboutData,
-  } = useQuery<AboutData>({
-    queryKey: ["aboutData"],
-    queryFn: fetchAboutData,
-  });
+  const { data, isLoading, error } = useData();
+  const { personalInfo: aboutData } = data || {};
 
   useEffect(() => {
     setCounter(0);
@@ -72,25 +51,25 @@ function About() {
               <div className={styles.aboutHeading}>
                 <h2 className={styles.aboutHeadingMedium}>About me</h2>
                 <p className={styles.aboutDescription}>
-                  {!isPending ? aboutData.description : "Loading..."}
+                  {!isLoading ? aboutData?.description : "Loading..."}
                 </p>
                 <ul className={styles.aboutInfoList}>
                   <li className={styles.aboutInfoItem}>
                     <span className={styles.aboutInfoLabel}>Name:</span>
                     <span className={styles.aboutInfoValue}>
-                      {!isPending ? aboutData.name : "Loading..."}
+                      {!isLoading ? aboutData?.name : "Loading..."}
                     </span>
                   </li>
                   <li className={styles.aboutInfoItem}>
                     <span className={styles.aboutInfoLabel}>Email:</span>
                     <span className={styles.aboutInfoValue}>
-                      {!isPending ? aboutData.email : "Loading..."}
+                      {!isLoading ? aboutData?.email : "Loading..."}
                     </span>
                   </li>
                   <li className={styles.aboutInfoItem}>
                     <span className={styles.aboutInfoLabel}>Phone: </span>
                     <span className={styles.aboutInfoValue}>
-                      {!isPending ? aboutData.phone : "Loading..."}
+                      {!isLoading ? aboutData?.phone : "Loading..."}
                     </span>
                   </li>
                 </ul>

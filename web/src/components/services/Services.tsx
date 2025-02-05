@@ -1,32 +1,10 @@
+import { useData } from "../../context/useData";
 import ServiceCard from "./ServiceCard";
 import styles from "./Services.module.css";
-import { useQuery } from "@tanstack/react-query";
-
-interface ServiceItem {
-  id: number;
-  title: string;
-  iconPath: string;
-}
 
 function Services() {
-  const fetchServicesData = async () => {
-    const response = await fetch(
-      `${import.meta.env.VITE_MY_PLATFORM_API_URL}/api/services`
-    );
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
-    }
-    return response.json();
-  };
-
-  const {
-    data: servicesData = [],
-    error,
-    isLoading,
-  } = useQuery<ServiceItem[]>({
-    queryKey: ["services"],
-    queryFn: fetchServicesData,
-  });
+  const { data, isLoading, error } = useData();
+  const { services: servicesData } = data || {};
 
   const renderContent = () => {
     if (isLoading) {
@@ -41,7 +19,7 @@ function Services() {
         <h1>Services</h1>
         <p>I offer different services.</p>
         <div className={styles.servicesGrid}>
-          {servicesData.map((service) => (
+          {servicesData?.map((service) => (
             <ServiceCard
               key={service.id}
               icon={service.iconPath}

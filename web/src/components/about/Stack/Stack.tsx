@@ -1,34 +1,12 @@
+import { useData } from "../../../context/useData";
 import { getImageURL } from "../../../utils/image-util";
 import styles from "./Stack.module.css";
-// import { useEffect, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
-
-interface StackItem {
-  id: number;
-  name: string;
-  url: string;
-  iconPath: string;
-  orderIndex: number;
-}
 
 function Stack() {
-  const fetchStackData = async () => {
-    const response = await fetch(
-      `${import.meta.env.VITE_MY_PLATFORM_API_URL}/api/tech-stack`
-    );
-    return await response.json();
-  };
+  const { data, isLoading, error } = useData();
+  const { techStack: stackData } = data || {};
 
-  const {
-    isPending,
-    error,
-    data: stackData,
-  } = useQuery<StackItem[]>({
-    queryKey: ["stackData"],
-    queryFn: fetchStackData,
-  });
-
-  if (isPending) return "Loading...";
+  if (isLoading) return "Loading...";
 
   if (error) return "An error has occurred: " + error.message;
 
