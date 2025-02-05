@@ -9,6 +9,7 @@ import {
   SkillItem,
 } from "../types";
 import { TechStackItem } from "../types/tech-stack";
+import { getCachedData, setCachedData } from "../utils/cache";
 
 const DataContext = createContext<DataContextType | undefined>(undefined);
 
@@ -16,6 +17,11 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const fetchAllData = async () => {
+    const cachedData = getCachedData();
+    if (cachedData) {
+      return cachedData;
+    }
+
     const [personalInfo, techStack, education, experience, skills, services]: [
       PersonalInfoItem,
       TechStackItem[],
@@ -43,7 +49,17 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({
         (res) => res.json()
       ),
     ]);
-    return { personalInfo, techStack, education, experience, skills, services };
+
+    const allData = {
+      personalInfo,
+      techStack,
+      education,
+      experience,
+      skills,
+      services,
+    };
+    setCachedData(allData);
+    return allData;
   };
 
   const { data, error, isLoading } = useQuery({
