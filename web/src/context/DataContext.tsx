@@ -7,6 +7,7 @@ import {
   PersonalInfoItem,
   ServiceItem,
   SkillItem,
+  GitHubRepoItem
 } from "../types";
 import { TechStackItem } from "../types/tech-stack";
 import { getCachedData, setCachedData } from "../utils/cache";
@@ -22,13 +23,14 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({
       return cachedData;
     }
 
-    const [personalInfo, techStack, education, experience, skills, services]: [
+    const [personalInfo, techStack, education, experience, skills, services, githubRepos]: [
       PersonalInfoItem,
       TechStackItem[],
       EducationItem[],
       ExperienceItem[],
       SkillItem[],
-      ServiceItem[]
+      ServiceItem[],
+      GitHubRepoItem[],
     ] = await Promise.all([
       fetch(
         `${import.meta.env.VITE_MY_PLATFORM_API_URL}/api/personal-info/1`
@@ -48,6 +50,9 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({
       fetch(`${import.meta.env.VITE_MY_PLATFORM_API_URL}/api/services`).then(
         (res) => res.json()
       ),
+      fetch(`${import.meta.env.VITE_MY_PLATFORM_API_URL}/api/github-repos`).then(
+        (res) => res.json()
+      ),
     ]);
 
     const allData = {
@@ -57,6 +62,7 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({
       experience,
       skills,
       services,
+      githubRepos
     };
     setCachedData(allData);
     return allData;

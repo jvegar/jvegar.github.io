@@ -1,59 +1,28 @@
 import { motion } from "framer-motion";
 import styles from "./Projects.module.css";
-import ecommercePreview from "../../assets/ecommerce-preview.jpg";
-import weatherAppPreview from "../../assets/weather-app-preview.jpg";
-interface Project {
-  id: number;
-  title: string;
-  description: string;
-  technologies: string[];
-  image: string;
-  githubUrl: string;
-  liveUrl?: string;
-}
+import { useData } from "../../context/useData";
+import { GitHubRepoItem } from "../../types";
+import Markdown from 'react-markdown';
 
-const mockProjects: Project[] = [
-  {
-    id: 1,
-    title: "E-commerce Platform",
-    description: "A full-stack e-commerce solution with React and Node.js",
-    technologies: ["React", "Node.js", "MongoDB", "Express"],
-    image: ecommercePreview,
-    githubUrl: "https://github.com/yourusername/ecommerce-project",
-    liveUrl: "https://your-ecommerce-site.com",
-  },
-  {
-    id: 2,
-    title: "Weather App",
-    description: "Real-time weather forecasting app using OpenWeatherMap API",
-    technologies: ["React Native", "Redux", "API Integration"],
-    image: weatherAppPreview,
-    githubUrl: "https://github.com/yourusername/weather-app",
-  },
-  // Add more mock projects as needed
-];
+const DEFAULT_README = '# Hello, *World*!';
 
-function ProjectCard({ project }: { project: Project }) {
+function ProjectCard({ project }: { project: GitHubRepoItem }) {
   return (
     <motion.div whileHover={{ scale: 1.05 }} className={styles.projectCard}>
-      <img
-        src={project.image}
-        alt={project.title}
-        className={styles.projectImage}
-      />
+      <Markdown>{DEFAULT_README}</Markdown>
       <div className={styles.projectDetails}>
-        <h3 className={styles.projectTitle}>{project.title}</h3>
+        <h3 className={styles.projectTitle}>{project.name}</h3>
         <p className={styles.projectDescription}>{project.description}</p>
         <div className={styles.projectTechnologies}>
-          {project.technologies.map((tech, index) => (
+          {project.topics.map((topic, index) => (
             <span key={index} className={styles.technologyTag}>
-              {tech}
+              {topic}
             </span>
           ))}
         </div>
         <div className={styles.projectLinks}>
           <a
-            href={project.githubUrl}
+            href={project.htmlUrl}
             target="_blank"
             rel="noopener noreferrer"
             className={styles.githubLink}
@@ -77,12 +46,23 @@ function ProjectCard({ project }: { project: Project }) {
 }
 
 function Projects() {
+  const { data, isLoading, error } = useData();
+  const { githubRepos: githubReposData } = data || {};
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>{`Failed to fetch services data: ${error.message}`}</p>;
+  }
+
   return (
     <section className={styles.projectsSection} id="projects-section">
       <div className={styles.container}>
         <h2 className={styles.sectionTitle}>Projects</h2>
         <div className={styles.projectsGrid}>
-          {mockProjects.map((project) => (
+          {githubReposData?.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}
         </div>

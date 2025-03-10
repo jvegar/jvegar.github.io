@@ -1,6 +1,7 @@
 import {
   EducationItem,
   ExperienceItem,
+  GitHubRepoItem,
   PersonalInfoItem,
   ServiceItem,
   SkillItem,
@@ -16,6 +17,7 @@ export interface DataContextType {
         experience: ExperienceItem[];
         skills: SkillItem[];
         services: ServiceItem[];
+        githubRepos: GitHubRepoItem[];
       }
     | undefined;
   error: Error | null;

@@ -4,6 +4,7 @@ import { ExperienceItem } from "./experience";
 import { ServiceItem } from "./service";
 import { SkillItem } from "./skill";
 import { DataContextType } from "./data-context";
+import { GitHubRepoItem } from "./github-repos";
 
 export type {
   PersonalInfoItem,
@@ -12,4 +13,5 @@ export type {
   ServiceItem,
   SkillItem,
   DataContextType,
+  GitHubRepoItem
 };
