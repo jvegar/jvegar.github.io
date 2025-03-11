@@ -26,12 +26,80 @@
   border-radius: 0.5rem;
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
 }
 
-.projectImage {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
+.readmeContent {
+  padding: 1rem;
+  flex: 1;
+  max-height: 300px;
+  overflow-y: auto;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.readmeContent :global(h1) {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.readmeContent :global(h2) {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin: 1rem 0;
+}
+
+.readmeContent :global(h3) {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin: 0.75rem 0;
+}
+
+.readmeContent :global(p) {
+  margin: 0.5rem 0;
+  line-height: 1.5;
+}
+
+.readmeContent :global(ul),
+.readmeContent :global(ol) {
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
+}
+
+.readmeContent :global(li) {
+  margin: 0.25rem 0;
+}
+
+.readmeContent :global(code) {
+  background-color: #f3f4f6;
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.25rem;
+  font-family: monospace;
+}
+
+.readmeContent :global(pre) {
+  background-color: #f3f4f6;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+.readmeContent :global(a) {
+  color: #3b82f6;
+  text-decoration: none;
+}
+
+.readmeContent :global(a:hover) {
+  text-decoration: underline;
+}
+
+.readmeContent :global(img) {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.25rem;
+  margin: 1rem 0;
 }
 
 .projectDetails {
