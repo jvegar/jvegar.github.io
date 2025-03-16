@@ -7,4 +7,5 @@ export interface GitHubRepoItem {
   htmlUrl: string;
   liveUrl?: string;
   image?: string;
+  readme?: string;
 }
