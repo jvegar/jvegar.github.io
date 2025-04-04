@@ -5,12 +5,17 @@ import { GitHubRepoItem } from "../../types";
 import Markdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import rehypeSanitize from "rehype-sanitize";
+import remarkGfm from "remark-gfm";
+import remarkGemoji from "remark-gemoji";
 
 function ProjectCard({ project }: { project: GitHubRepoItem }) {
   return (
     <motion.div whileHover={{ scale: 1.05 }} className={styles.projectCard}>
       <div className={styles.readmeContent}>
-        <Markdown rehypePlugins={[rehypeRaw, rehypeSanitize]}>
+        <Markdown
+          rehypePlugins={[rehypeRaw, rehypeSanitize]}
+          remarkPlugins={[remarkGfm, remarkGemoji]}
+        >
           {project.readme}
         </Markdown>
       </div>

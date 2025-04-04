@@ -14,5 +14,9 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "remark-gemoji": "^8.0.0",
+    "remark-gfm": "^4.0.1"
+  }
 }
