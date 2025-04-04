@@ -11,7 +11,6 @@ interface NavItemProps {
 
 function NavItem({ href, text, isActive, onClick }: NavItemProps) {
   const isPlatformLink = href === "#my-platform-section";
-  // const sectionId = href.split("#")[1];
 
   return (
     <li className={styles.headerNavItem}>
