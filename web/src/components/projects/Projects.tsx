@@ -11,16 +11,16 @@ import remarkGemoji from "remark-gemoji";
 function ProjectCard({ project }: { project: GitHubRepoItem }) {
   return (
     <motion.div whileHover={{ scale: 1.05 }} className={styles.projectCard}>
-      <div className={styles.readmeContent}>
-        <Markdown
-          rehypePlugins={[rehypeRaw, rehypeSanitize]}
-          remarkPlugins={[remarkGfm, remarkGemoji]}
-        >
-          {project.readme}
-        </Markdown>
-      </div>
       <div className={styles.projectDetails}>
         <h3 className={styles.projectTitle}>{project.name}</h3>
+        <div className={styles.readmeContent}>
+          <Markdown
+            rehypePlugins={[rehypeRaw, rehypeSanitize]}
+            remarkPlugins={[remarkGfm, remarkGemoji]}
+          >
+            {project.readme}
+          </Markdown>
+        </div>
         <p className={styles.projectDescription}>{project.description}</p>
         <div className={styles.projectTechnologies}>
           {project.topics.map((topic, index) => (
