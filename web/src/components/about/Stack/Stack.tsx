@@ -1,3 +1,4 @@
+import { Skeleton } from "@mui/material";
 import { useData } from "../../../context/useData";
 import { getImageURL } from "../../../utils/image-util";
 import styles from "./Stack.module.css";
@@ -6,7 +7,7 @@ function Stack() {
   const { data, isLoading, error } = useData();
   const { techStack: stackData } = data || {};
 
-  if (isLoading) return "Loading...";
+  if (isLoading) return <Skeleton variant="rounded" animation="pulse" height={40} />;
 
   if (error) return "An error has occurred: " + error.message;
 

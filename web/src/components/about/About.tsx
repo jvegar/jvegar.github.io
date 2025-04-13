@@ -4,6 +4,8 @@ import Stack from "./Stack/Stack";
 import { useEffect, useState } from "react";
 import { useScrollSpyContext } from "../layout/Header/scrollSpyContext";
 import { useData } from "../../context/useData";
+import { Skeleton } from "@mui/material";
+// import Skeleton from "../common/Skeleton";
 
 function About() {
   const [counter, setCounter] = useState(0);
@@ -51,25 +53,25 @@ function About() {
               <div className={styles.aboutHeading}>
                 <h2 className={styles.aboutHeadingMedium}>About me</h2>
                 <p className={styles.aboutDescription}>
-                  {!isLoading ? aboutData?.description : "Loading..."}
+                  {!isLoading ? aboutData?.description : <Skeleton variant="rounded" animation="pulse" height={40} />}
                 </p>
                 <ul className={styles.aboutInfoList}>
                   <li className={styles.aboutInfoItem}>
                     <span className={styles.aboutInfoLabel}>Name:</span>
                     <span className={styles.aboutInfoValue}>
-                      {!isLoading ? aboutData?.name : "Loading..."}
+                      {!isLoading ? aboutData?.name : <Skeleton variant="rounded" animation="pulse" width={100} />}
                     </span>
                   </li>
                   <li className={styles.aboutInfoItem}>
                     <span className={styles.aboutInfoLabel}>Email:</span>
                     <span className={styles.aboutInfoValue}>
-                      {!isLoading ? aboutData?.email : "Loading..."}
+                      {!isLoading ? aboutData?.email : <Skeleton variant="rounded" animation="pulse" width={100}/>}
                     </span>
                   </li>
                   <li className={styles.aboutInfoItem}>
                     <span className={styles.aboutInfoLabel}>Phone: </span>
                     <span className={styles.aboutInfoValue}>
-                      {!isLoading ? aboutData?.phone : "Loading..."}
+                      {!isLoading ? aboutData?.phone : <Skeleton variant="rounded" animation="pulse" width={100}/>}
                     </span>
                   </li>
                 </ul>
