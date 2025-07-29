@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import styles from "./Projects.module.css";
-import { useData } from "../../context/useData";
-import { GitHubRepoItem } from "../../types";
+import { useData } from "@context/useData";
+import { GitHubRepoItem } from "@/types";
 import Markdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import rehypeSanitize from "rehype-sanitize";

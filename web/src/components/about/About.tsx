@@ -1,9 +1,9 @@
 import styles from "./About.module.css";
-import aboutImage from "../../assets/about.jpg";
+import aboutImage from "@assets/about.jpg";
 import Stack from "./Stack/Stack";
 import { useEffect, useState } from "react";
-import { useScrollSpyContext } from "../layout/Header/scrollSpyContext";
-import { useData } from "../../context/useData";
+import { useScrollSpyContext } from "@components/layout/Header/scrollSpyContext";
+import { useData } from "@context/useData";
 import { Skeleton } from "@mui/material";
 // import Skeleton from "../common/Skeleton";
 

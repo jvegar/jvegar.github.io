@@ -8,9 +8,9 @@ import {
   ServiceItem,
   SkillItem,
   GitHubRepoItem
-} from "../types";
-import { TechStackItem } from "../types/tech-stack";
-import { getCachedData, setCachedData } from "../utils/cache";
+} from "@/types";
+import { TechStackItem } from "@/types/tech-stack";
+import { getCachedData, setCachedData } from "@utils/cache";
 
 const DataContext = createContext<DataContextType | undefined>(undefined);
 

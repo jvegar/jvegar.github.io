@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
-import LoginPage from "./LoginPage/LoginPage";
-import SignupPage from "./SignupPage/SignupPage";
-import EditData from "./EditData/EditData";
+import LoginPage from "@components/my-platform/LoginPage/LoginPage";
+import SignupPage from "@components/my-platform/SignupPage/SignupPage";
+import EditData from "@components/my-platform/EditData/EditData";
 import styles from "./MyPlatform.module.css";
 
 function MyPlatform() {

@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Alert } from "../../common/Alert";
-import { Input } from "../../common/Input";
-import { Button } from "../../common/Button";
-import UserProfile from "../UserProfile/UserProfile";
+import { Alert } from "@components/common/Alert";
+import { Input } from "@components/common/Input";
+import { Button } from "@components/common/Button";
+import UserProfile from "@components/my-platform/UserProfile/UserProfile";
 import styles from "./LoginPage.module.css";
 
 const SIGN_IN_URL = import.meta.env.VITE_SIGN_IN_URL;

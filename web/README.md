@@ -2,6 +2,10 @@
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
+## Path Aliases
+
+This project uses TypeScript path aliases to simplify imports. See [PATH_ALIASES.md](./PATH_ALIASES.md) for details on available aliases and usage examples.
+
 Currently, two official plugins are available:
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh

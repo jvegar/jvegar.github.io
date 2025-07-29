@@ -1,6 +1,6 @@
 // web/src/context/useData.ts
 import { useContext } from "react";
-import { DataContext } from "./DataContext"; // Adjust the import path as necessary
+import { DataContext } from "@context/DataContext";
 
 export const useData = () => {
   const context = useContext(DataContext);

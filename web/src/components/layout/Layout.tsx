@@ -1,5 +1,5 @@
-import Header from "./Header/Header";
-import Footer from "./Footer/Footer";
+import Header from "@components/layout/Header/Header";
+import Footer from "@components/layout/Footer/Footer";
 import styles from "./Layout.module.css";
 
 interface LayoutProps {

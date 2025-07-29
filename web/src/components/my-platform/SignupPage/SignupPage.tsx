@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./SignupPage.module.css";
-import { Input } from "../../common/Input";
-import { Button } from "../../common/Button";
-import { Alert } from "../../common/Alert";
-import { Modal } from "../../common/Modal";
+import { Input } from "@components/common/Input";
+import { Button } from "@components/common/Button";
+import { Alert } from "@components/common/Alert";
+import { Modal } from "@components/common/Modal";
 
 const SIGN_UP_URL = import.meta.env.VITE_SIGN_UP_URL;
 

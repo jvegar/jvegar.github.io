@@ -1,10 +1,10 @@
 import styles from "./Footer.module.css";
-import twitterIcon from "../../../assets/icon-twitter.svg";
-import facebookIcon from "../../../assets/icon-facebook.svg";
-import instagramIcon from "../../../assets/icon-instagram.svg";
-import locationIcon from "../../../assets/icon-location.svg";
-import phoneIcon from "../../../assets/icon-phone.svg";
-import emailIcon from "../../../assets/icon-email.svg";
+import twitterIcon from "@assets/icon-twitter.svg";
+import facebookIcon from "@assets/icon-facebook.svg";
+import instagramIcon from "@assets/icon-instagram.svg";
+import locationIcon from "@assets/icon-location.svg";
+import phoneIcon from "@assets/icon-phone.svg";
+import emailIcon from "@assets/icon-email.svg";
 
 function Footer() {
   return (
